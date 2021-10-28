@@ -1,8 +1,8 @@
 {
   "name": "musicwiki",
   "version": "1.0.0",
-  "description": "MusicWiki is a music streaming platform for 20k users. The users can select songs to listen to. MusicWiki wants to be able to suggest music to its users for a better experience. Currently, the database does not have the data relationships in place to efficiently find suggestions to a user.",
-  "main": "se driven website will help MusicWiki do just that. This database focuses on creating the proper data relationships to map artist “adjacency” -- namely, finding artists that share some connection by label or song collaboration, or finding songs by album. ",
+  "description": "MusicWiki is a music streaming platform for 20k users. The users can select songs to listen to. MusicWiki wants to be able to suggest music to its users for a better experience. Currently, the database does not have the data relationships in place to efficiently find suggestions to a user. se driven website will help MusicWiki do just that. This database focuses on creating the proper data relationships to map artist “adjacency” -- namely, finding artists that share some connection by label or song collaboration, or finding songs by album.",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
