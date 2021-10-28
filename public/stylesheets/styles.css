@@ -1,3 +1,58 @@
-h1 {
-  color: navy;
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  background-color: rgb(10, 25, 47);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+}
+
+#index-hero {
+  background-color: rgb(10, 25, 47);
+  text-align: center;
+  font-size: 2em;
+}
+
+#index-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#logo {
+  background-color: rgb(10, 25, 47);
+  margin-bottom: 33px;
+  font-size: 2em;
+  color: whitesmoke;
+  font-family: "Crimson Text", serif;
+}
+
+.level {
+  font-family: "Crimson Text", serif;
+}
+
+#navigation {
+  align-self: center;
+  width: 70%;
+}
+
+#menu,
+#about {
+  color: whitesmoke;
+  background-color: rgb(23, 42, 69);
+}
+
+a:hover,
+li:hover {
+  background-color: rgb(10, 25, 47);
+}
+
+#about {
+  height: 100%;
+}
+
+#about > p {
+  margin: 20px 0 0 0;
+  font-size: 0.5em;
 }
