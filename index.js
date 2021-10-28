@@ -8,7 +8,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const path = require("path");
 const methodOverride = require("method-override");
-const home = require("./routes/home");
 const ejsMate = require("ejs-mate");
 
 app.engine("ejs", ejsMate);
@@ -17,16 +16,30 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join((__dirname, "public"))));
-
 app.use(methodOverride("_method"));
-app.use("/home", home);
+
+// Router
+const home = require("./routes/home");
+const album = require("./routes/album");
+const artist = require("./routes/artist");
+const song = require("./routes/song");
+const label = require("./routes/label");
+const songArtist = require("./routes/songArtist");
+
+app.use("/main", home);
+app.use("/album", album);
+app.use("/artist", artist);
+app.use("/song", song);
+app.use("/label", label);
+app.use("/songartist", songArtist);
+//
 
 app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
 });
 
 app.get("/", (req, res) => {
-  res.redirect("home");
+  res.redirect("main");
 });
 
 app.all("*", (req, res, next) => {

@@ -22,10 +22,14 @@ body {
 
 #logo {
   background-color: rgb(10, 25, 47);
-  margin-bottom: 33px;
+  margin-bottom: 40px;
   font-size: 2em;
   color: whitesmoke;
   font-family: "Crimson Text", serif;
+}
+
+#navigation {
+  margin-top: 10px;
 }
 
 .level {
