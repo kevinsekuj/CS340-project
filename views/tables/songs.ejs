@@ -1,3 +1,81 @@
-<% layout('/partials/boilerplate') %>
+<% layout('/partials/table') %>
 
-<h1 style="color:blanchedalmond">Songs</h1>
+<section class="hero is-dark mb-5">
+    <div class="hero-body">
+      <p class="title"  style="color:whitesmoke">
+        Songs 
+      </p>
+      <p class="subtitle"  style="color:whitesmoke">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, porro dolorum corporis aliquam qui, neque cupiditate non, delectus placeat voluptatem sequi fugiat blanditiis distinctio sit architecto iure laboriosam fugit itaque.
+      </p>
+    </div>
+  </section>
+
+  <div class="container mb-5" id="form-container">
+    <div class="box">
+      <h5 class="title is-5">INSERT new song</h5>
+  
+      <div class="field">
+        <label class="label">Song name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="">
+        </div>
+      </div>
+  
+      <div class="field">
+        <label class="label">Song length</label>
+        <div class="control">
+          <input class="input" type="number" placeholder="in seconds">
+        </div>
+      </div>
+      
+      <div class="field">
+        <label class="label">Album</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="">
+        </div>
+      </div>
+      
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+    <div class="box">
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>Song ID</th>
+                <th>Song name</th>
+                <th>Song length (s)</th>
+                <th>Album ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Placeholder</td>
+                <td>180</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Placeholder</td>
+                <td>462</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Placeholder</td>
+                <td>102</td>
+                <td>543</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

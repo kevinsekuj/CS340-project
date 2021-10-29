@@ -3,9 +3,14 @@ body {
   margin: 0;
   height: 100%;
 }
+
 body {
   background-color: rgb(10, 25, 47);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+}
+
+:root {
+  color-scheme: dark;
 }
 
 #index-hero {

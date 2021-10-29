@@ -26,7 +26,7 @@ const song = require("./routes/song");
 const label = require("./routes/label");
 const songArtist = require("./routes/songArtist");
 
-app.use("/main", home);
+app.use("/", home);
 app.use("/album", album);
 app.use("/artist", artist);
 app.use("/song", song);
@@ -39,7 +39,7 @@ app.listen(port, (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("main");
+  res.redirect("home");
 });
 
 app.all("*", (req, res, next) => {

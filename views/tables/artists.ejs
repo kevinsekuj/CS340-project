@@ -1,3 +1,104 @@
-<% layout('/partials/boilerplate') %>
+<% layout('/partials/table') %>
 
-<h1 style="color:blanchedalmond">Artists</h1>
+<section class="hero is-dark mb-5">
+    <div class="hero-body">
+      <p class="title"  style="color:whitesmoke">
+        Artists 
+      </p>
+      <p class="subtitle"  style="color:whitesmoke">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, porro dolorum corporis aliquam qui, neque cupiditate non, delectus placeat voluptatem sequi fugiat blanditiis distinctio sit architecto iure laboriosam fugit itaque.
+      </p>
+    </div>
+  </section>
+
+  <div class="container" id="form-wrapper">
+    <div class="container mb-5 mr-5" id="form-container">
+      <div class="box">
+        <h5 class="title is-5">INSERT new artist</h5>
+    
+        <div class="field">
+          <label class="label">Artist name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="">
+          </div>
+        </div>
+    
+        <div class="field">
+          <label class="label">Label</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="">
+          </div>
+        </div>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container mb-5 ml-5" id="form-container">
+      <div class="box">
+        <h5 class="title is-5">SEARCH</h5>
+
+        <div class="field">
+          <label class="label">SELECT column</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Artist name</option>
+                <option>Label</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    
+        <div class="field">
+          <label class="label">Search parameters</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="">
+          </div>
+        </div>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+<div class="container">
+    <div class="box">
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>Artist ID</th>
+                <th>Artist name</th>
+                <th>Label ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Crystal Castles</td>
+                <td>12</td>
+
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Hikaru Utada</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Kanye West</td>
+                <td>53</td
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

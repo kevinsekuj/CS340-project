@@ -1,3 +1,74 @@
-<% layout('/partials/boilerplate') %>
+<% layout('/partials/table') %>
 
-<h1 style="color:blanchedalmond">Songs Artists</h1>
+<section class="hero is-dark mb-5">
+    <div class="hero-body">
+      <p class="title"  style="color:whitesmoke">
+        Songs and artists 
+      </p>
+      <p class="subtitle"  style="color:whitesmoke">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, porro dolorum corporis aliquam qui, neque cupiditate non, delectus placeat voluptatem sequi fugiat blanditiis distinctio sit architecto iure laboriosam fugit itaque.
+      </p>
+    </div>
+  </section>
+
+  <div class="container mb-5" id="form-container">
+    <div class="box">
+      <h5 class="title is-5">INSERT new artist</h5>
+  
+      <div class="field">
+        <label class="label">Artist name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="">
+        </div>
+      </div>
+  
+      <div class="field">
+        <label class="label">Label</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="">
+        </div>
+      </div>
+      
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+    <div class="box">
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>Album ID</th>
+                <th>Album name</th>
+                <th>Release date</th>
+                <th>Artist ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Placeholder</td>
+                <td>May 24, 2010</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Placeholder</td>
+                <td>January 1st, 1962</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Placeholder</td>
+                <td>June 9th, 2021</td>
+                <td>543</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
