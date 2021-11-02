@@ -18,6 +18,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join((__dirname, "public"))));
 app.use(methodOverride("_method"));
 
+// Database
+// TODO: ideally here just want a "Connected to MYSQL" or "Could not connect"
+async function test() {
+  // get the client
+  const mysql = require("mysql2/promise");
+  // create the connection
+  const connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  });
+  // query database
+  const [rows] = await connection.execute("SELECT * FROM `test`");
+  console.log(rows);
+  console.log("Connected to MySQL server...");
+}
+test();
+
 // Router
 const home = require("./routes/home");
 const album = require("./routes/album");
