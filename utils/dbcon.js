@@ -2,7 +2,7 @@ const mysql = require("mysql2/promise");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-module.exports = async () => {
+const connection = async () => {
   const con = await mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -14,3 +14,5 @@ module.exports = async () => {
   });
   return con;
 };
+
+module.exports = connection;
