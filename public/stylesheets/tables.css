@@ -18,3 +18,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+i {
+  color: white;
+}
