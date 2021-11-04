@@ -12,6 +12,16 @@ edit.addEventListener("click", () => {
   onfocus="this.setSelectionRange(this.value.length,this.value.length);"">`;
 
   row.replaceChild(newArtist, artist);
+
+  const label = row.children[2];
+  const newLabel = document.createElement("td");
+
+  newLabel.innerHTML = `<input type="text" autofocus value="${label.innerText}" 
+  onmouseover="this.setSelectionRange(this.value.length,this.value.length);" 
+  onfocus="this.setSelectionRange(this.value.length,this.value.length);"">`;
+
+  row.replaceChild(newLabel, label);
+
   newArtist.focus();
 });
 

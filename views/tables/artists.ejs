@@ -1,118 +1,118 @@
 <% layout('/partials/table') %>
 
 <section class="hero is-dark mb-5">
-    <div class="hero-body">
-      <p class="title"  style="color:whitesmoke">
-        Artists 
-      </p>
-      <p class="subtitle"  style="color:whitesmoke">
-        View, insert, or search for an Artist. An Artist may or may not be 
-        signed to a Record Label. And an Artist must have at least one song 
-        attributed to them.
-      </p>
-    </div>
-  </section>
+  <div class="hero-body">
+    <p class="title" style="color: whitesmoke;">
+      Artists
+    </p>
+    <p class="subtitle" style="color: whitesmoke;">
+      View, insert, or search for an Artist. An Artist may or may not be signed
+      to a Record Label. And an Artist must have at least one song attributed to
+      them.
+    </p>
+  </div>
+</section>
 
-  <div class="container" id="form-wrapper">
-    <div class="container mb-5 mr-5" id="form-container">
-      <div class="box">
-        <h5 class="title is-5">INSERT new artist</h5>
-    
-        <div class="field">
-          <label class="label">Artist name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="">
-          </div>
+<div class="container" id="form-wrapper">
+  <div class="container mb-5 mr-5" id="form-container">
+    <div class="box">
+      <h5 class="title is-5">INSERT new artist</h5>
+
+      <div class="field">
+        <label class="label">* Artist Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="" />
         </div>
-    
-        <div class="field">
-          <label class="label">Label</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="">
-          </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Label ID</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="" />
         </div>
-        
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
         </div>
       </div>
     </div>
-  
-    <div class="container mb-5 ml-5" id="form-container">
-      <div class="box">
-        <h5 class="title is-5">SEARCH</h5>
-
-        <div class="field">
-          <label class="label">SELECT column</label>
-          <div class="control">
-            <div class="select">
-              <select>
-                <option>Artist name</option>
-                <option>Label</option>
-              </select>
-            </div>
-          </div>
-        </div>
-    
-        <div class="field">
-          <label class="label">Search parameters</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="">
-          </div>
-        </div>
-        
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
   </div>
 
-<div class="container">
+  <div class="container mb-5 ml-5" id="form-container">
     <div class="box">
-        <table class="table is-fullwidth">
-            <thead>
-            <tr>
-                <th>Artist ID</th>
-                <th>Artist name</th>
-                <th>Label ID</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr id="a1">
-                <td>1</td>
-                <td>Crystal Castles</td>
-                <td>12</td>
-                <td>
-                  <button class="button is-link" id="editButton">Edit</button>
-                  <button class="button is-link" id="deleteButton">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Hikaru Utada</td>
-                <td>1</td>
-                <td>
-                  <button class="button is-link">Edit</button>
-                  <button class="button is-link">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Kanye West</td>
-                <td>53</td>
-                <td>
-                  <button class="button is-link">Edit</button>
-                  <button class="button is-link">Delete</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+      <h5 class="title is-5">SEARCH</h5>
+
+      <div class="field">
+        <label class="label">SELECT column</label>
+        <div class="control">
+          <div class="select">
+            <select>
+              <option value="artistID">Artist ID</option>
+              <option value="artistName">Artist name</option>
+              <option value="labelID">Label ID</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Search parameters</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="" />
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="box">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Artist ID</th>
+          <th>Artist name</th>
+          <th>Label ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="a1">
+          <td>1</td>
+          <td>Crystal Castles</td>
+          <td>12</td>
+          <td>
+            <button class="button is-link" id="editButton">Edit</button>
+            <button class="button is-link" id="deleteButton">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Hikaru Utada</td>
+          <td>1</td>
+          <td>
+            <button class="button is-link">Edit</button>
+            <button class="button is-link">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Kanye West</td>
+          <td>53</td>
+          <td>
+            <button class="button is-link">Edit</button>
+            <button class="button is-link">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
