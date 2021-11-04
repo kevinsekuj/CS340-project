@@ -22,3 +22,7 @@ body {
 i {
   color: white;
 }
+
+table {
+  text-align: center;
+}

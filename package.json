@@ -26,5 +26,8 @@
     "method-override": "^3.0.0",
     "mysql2": "^2.3.2",
     "path": "^0.12.7"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }

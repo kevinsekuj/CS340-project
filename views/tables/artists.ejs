@@ -88,7 +88,7 @@
           <th>Artist ID</th>
           <th>Artist name</th>
           <th>Label ID</th>
-          <th></th>
+          <th>Modify row</th>
         </tr>
       </thead>
       <tbody>
@@ -98,11 +98,17 @@
           <td><%=row.artistName%></td>
           <td><%=row.labelId%></td>
           <td>
-            <button class="button is-small is-primary" id="editButton">
+            <button class="button is-small is-primary editButton" id="" style="margin-right:2px;">
               <strong>Edit</strong>
+              <span class="icon is-small">
+                <i class="fas fa-edit"></i>
+              </span>
             </button>
-            <button class="button is-small is-danger" id="deleteButton">
+            <button class="button is-small is-danger deleteButton" id="" style="margin-left:2px;">
               <strong>Delete</strong>
+              <span class="icon is-small">
+                <i class="fas fa-trash-alt"></i>
+              </span>
             </button>
           </td>
         </tr>
