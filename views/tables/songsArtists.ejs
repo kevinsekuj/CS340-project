@@ -51,36 +51,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Vanished</td>
-          <td>1</td>
-          <td>1</td>
-          <td>Crystal Castles</td>
-        </tr>
-        <tr>
-          <td>One Last Kiss</td>
-          <td>2</td>
-          <td>20</td>
-          <td>Hikaru Utada</td>
-        </tr>
-        <tr>
-          <td>First Love</td>
-          <td>21</td>
-          <td>20</td>
-          <td>Hikaru Utada</td>
-        </tr>
-        <tr>
-          <td>Lollipop Remix ft. Kanye West</td>
-          <td>35</td>
-          <td>3</td>
-          <td>Kanye West</td>
-        </tr>
-        <tr>
-          <td>Lollipop Remix ft. Kanye West</td>
-          <td>35</td>
-          <td>4</td>
-          <td>Lil Wayne</td>
-        </tr>
+        <% fakeData.forEach(row => { %>
+         <tr id="<%=row.songId%>">
+          <td><%=row.songName%></td>
+          <td><%=row.songId%></td>
+          <td><%=row.artistId%></td>
+          <td><%=row.artistName%></td>
+         </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>

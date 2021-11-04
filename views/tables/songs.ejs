@@ -57,24 +57,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Placeholder</td>
-          <td>180</td>
-          <td>64</td>
+        <% fakeData.forEach(row => { %>
+        <tr <%=row.songId%> >
+          <td id="<%=row.songId%>">1</td>
+          <td><%=row.songName%> </td>
+          <td><%=row.songLength%> </td>
+          <td><%=row.albumId%> </td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Placeholder</td>
-          <td>462</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Placeholder</td>
-          <td>102</td>
-          <td>543</td>
-        </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>

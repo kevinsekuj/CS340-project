@@ -57,24 +57,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Placeholder</td>
-          <td>May 24, 2010</td>
-          <td>64</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Placeholder</td>
-          <td>January 1st, 1962</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Placeholder</td>
-          <td>June 9th, 2021</td>
-          <td>543</td>
-        </tr>
+        <% fakeData.forEach(row => { %>
+          <tr id="<%=row.albumId%>">
+            <td><%=row.albumId%> </td>
+            <td><%=row.albumName%> </td>
+            <td><%=row.releaseDate%> </td>
+            <td><%=row.artistId%> </td>
+          </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>

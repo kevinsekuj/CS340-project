@@ -85,11 +85,11 @@
         </tr>
       </thead>
       <tbody>
-        <% fakeData.forEach(element => { %>
-         <tr id="<%= element.artistId%>"> 
-          <td><%=element.artistId%></td>
-          <td><%=element.artistName%></td>
-          <td><%=element.labelId%></td>
+        <% fakeData.forEach(row => { %>
+         <tr id="<%=row.artistId%>"> 
+          <td><%=row.artistId%></td>
+          <td><%=row.artistName%></td>
+          <td><%=row.labelId%></td>
           <td>
             <button class="button is-small is-primary" id="editButton">
               <strong>Edit</strong>

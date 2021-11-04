@@ -52,21 +52,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Interscope</td>
-                <td>January 1st, 1989</td>
+            <% fakeData.forEach(row => { %>
+              <tr id="<%=row.labelId%>">
+                <td><%=row.labelId%></td>
+                <td><%=row.labelName%></td>
+                <td><%=row.dateFounded%></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Sony Music</td>
-                <td>January 1st, 1929</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>YEAR0001</td>
-                <td>January 1st, 2015</td
-            </tr>
+            <% }) %>
             </tbody>
         </table>
     </div>
