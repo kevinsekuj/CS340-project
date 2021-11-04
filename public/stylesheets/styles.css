@@ -14,7 +14,7 @@ body {
 }
 
 #index-hero {
-  background-color: rgb(10, 25, 47);
+  background-color: rgb(211, 211, 211);
   text-align: center;
   font-size: 2em;
 }
@@ -26,7 +26,7 @@ body {
 }
 
 #logo {
-  background-color: rgb(10, 25, 47);
+  background-color: rgb(54, 54, 54);
   margin-bottom: 40px;
   font-size: 2em;
   color: whitesmoke;
@@ -48,13 +48,12 @@ body {
 
 #menu,
 #about {
-  color: whitesmoke;
-  background-color: rgb(23, 42, 69);
+  color: rgb(23, 42, 69);
 }
 
 a:hover,
 li:hover {
-  background-color: rgb(10, 25, 47);
+  background-color: whitesmoke;
 }
 
 #about {
@@ -64,4 +63,8 @@ li:hover {
 #about > p {
   margin: 20px 0 0 0;
   font-size: 0.5em;
+}
+
+#level p {
+  color: rgb(23, 42, 69);
 }
