@@ -39,7 +39,9 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button class="button is-small is-link">
+          <strong>Submit</strong>
+        </button>
       </div>
     </div>
   </div>
@@ -58,12 +60,12 @@
       </thead>
       <tbody>
         <% fakeData.forEach(row => { %>
-          <tr id="<%=row.albumId%>">
-            <td><%=row.albumId%> </td>
-            <td><%=row.albumName%> </td>
-            <td><%=row.releaseDate%> </td>
-            <td><%=row.artistId%> </td>
-          </tr>
+        <tr id="<%=row.albumId%>">
+          <td><%=row.albumId%></td>
+          <td><%=row.albumName%></td>
+          <td><%=row.releaseDate%></td>
+          <td><%=row.artistId%></td>
+        </tr>
         <% }) %>
       </tbody>
     </table>
