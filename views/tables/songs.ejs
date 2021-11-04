@@ -60,9 +60,8 @@
       </thead>
       <tbody>
         <% fakeData.forEach(row => { %>
-        <tr <%="row.songId%">
-          >
-          <td id="<%=row.songId%>">1</td>
+        <tr id="<%=row.songId%>">
+          <td><%=row.songId%></td>
           <td><%=row.songName%></td>
           <td><%=row.songLength%></td>
           <td><%=row.albumId%></td>
