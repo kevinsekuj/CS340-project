@@ -1,5 +1,4 @@
 const edit = document.getElementById("editButton");
-const del = document.getElementById("deleteButton");
 
 edit.addEventListener("click", () => {
   edit.blur();
@@ -25,7 +24,12 @@ edit.addEventListener("click", () => {
   newArtist.focus();
 });
 
-del.addEventListener("click", () => {
-  const row = document.getElementById("a1");
-  row.parentElement.removeChild(row);
-});
+const del = document.querySelectorAll("#deleteButton");
+
+del.forEach(button =>
+  button.addEventListener("click", () => {
+    console.log("hey");
+    const row = button.parentElement.parentElement;
+    row.parentElement.removeChild(row);
+  })
+);
