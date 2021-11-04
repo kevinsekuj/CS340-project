@@ -85,10 +85,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="a1">
-          <td>1</td>
-          <td>Crystal Castles</td>
-          <td>12</td>
+        <% fakeData.forEach(element => { %>
+         <tr id="<%= element.artistId%>"> 
+          <td><%=element.artistId%></td>
+          <td><%=element.artistName%></td>
+          <td><%=element.labelId%></td>
           <td>
             <button class="button is-small is-primary" id="editButton">
               <strong>Edit</strong>
@@ -98,32 +99,7 @@
             </button>
           </td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Hikaru Utada</td>
-          <td>1</td>
-          <td>
-            <button class="button is-small is-primary">
-              <strong>Edit</strong>
-            </button>
-            <button class="button is-small is-danger">
-              <strong>Delete</strong>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Kanye West</td>
-          <td>53</td>
-          <td>
-            <button class="button is-small is-primary">
-              <strong>Edit</strong>
-            </button>
-            <button class="button is-small is-danger">
-              <strong>Delete</strong>
-            </button>
-          </td>
-        </tr>
+        <% }) %> 
       </tbody>
     </table>
   </div>
