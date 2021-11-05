@@ -73,6 +73,7 @@ const addEditButtonListener = (editButton) => {
     // Add listener to SAVE button
     document.getElementById(`saveBtn${rowId}`).addEventListener("click", () => {
       const rowCells = Object.values(row.children);
+      const buttons = rowCells[rowCells.length - 1];
 
       // get user input values
       const values = rowCells
@@ -82,6 +83,22 @@ const addEditButtonListener = (editButton) => {
       values.forEach((value, i) => {
         rowCells[i + 1].innerHTML = `<td>${value}</td>`;
       });
+
+      // Restore edit/delete buttons
+      row.children[3].innerHTML = rowRestoreValues[3];
+
+      const buttonCell = row.children[row.children.length - 1];
+      const editButton = buttonCell.firstElementChild;
+      const deleteButton = editButton.nextElementSibling;
+
+      // Add listener to edit button
+      addEditButtonListener(editButton);
+
+      // Add listener to cancel button
+      addDeleteButtonListener(deleteButton);
+
+      rowRestoreValues.length = 0;
+      editInProgress = false;
     });
 
     // Add listener to CANCEL button
@@ -107,7 +124,6 @@ const addEditButtonListener = (editButton) => {
         rowRestoreValues.length = 0;
         editInProgress = false;
       });
-
     row.children[1].focus();
   });
 };
