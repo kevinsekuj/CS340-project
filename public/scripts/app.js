@@ -109,6 +109,7 @@ allEditButtons.forEach((button) =>
 
       // NEED TO ADD NEW LISTENER TO RESTORED EDIT BUTTON
 
+      rowRestoreValues.length = 0;
       editInProgress = false;
     });
 
