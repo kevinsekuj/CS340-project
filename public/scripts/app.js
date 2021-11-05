@@ -88,15 +88,15 @@ const addEditButtonListener = (editButton) => {
     document
       .getElementById(`cancelBtn${rowId}`)
       .addEventListener("click", () => {
+        debugger;
         let row = document.getElementById(`${rowId}`);
 
-        console.log(row);
         for (let i = 0; i < row.children.length; i++) {
           row.children[i].innerHTML = rowRestoreValues[i];
         }
         const buttonCell = row.children[row.children.length - 1];
         const editButton = buttonCell.firstElementChild;
-        const deleteButton = editButton.nextSibling;
+        const deleteButton = editButton.nextElementSibling;
 
         // Add listener to edit button
         addEditButtonListener(editButton);
