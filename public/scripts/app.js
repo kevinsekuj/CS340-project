@@ -1,38 +1,80 @@
-const edit = document.querySelectorAll('.editButton');
-const del = document.querySelectorAll('.deleteButton');
-let unsavedEdit = false;
+const allEditButtons = document.querySelectorAll(".editButton");
+const allDeleteButtons = document.querySelectorAll(".deleteButton");
+const rowRestoreValues = [];
+let editInProgress = false;
 
-edit.forEach((button) =>
-  button.addEventListener('click', () => {
-    if (unsavedEdit) {
-      alert('Please save or cancel your current operation');
+// Add editing functionality to all edit buttons on page
+allEditButtons.forEach((button) =>
+  button.addEventListener("click", () => {
+    if (editInProgress) {
+      alert(
+        "Save or cancel modifications to your row before modifying another row."
+      );
       return;
     }
 
-    unsavedEdit = true;
+    // bool until changes made, take focus off button
+    editInProgress = true;
     button.blur();
 
-    const cell = button.parentElement;
+    // grab td column holding edit & delete | row | rowId | artist name column
+    const oldButtonCell = button.parentElement;
     const row = button.parentElement.parentElement;
-    const rowId = row.getAttribute('id');
-    const artist = row.children[1];
+    const rowId = row.getAttribute("id");
 
-    const newArtist = document.createElement('td');
+    // Save pre-edited values in case user cancels modifications
+    // e.g. array will save [ "Crystal Castles", "2"] for artist & label ID
+    for (let i = 0; i < row.children.length; i++) {
+      rowRestoreValues.push(row.children[i].innerHTML);
+    }
+    rowRestoreValues.push(oldButtonCell);
 
+    // Grab all columns from row except first and last
+    // Create new: <td> -> <input type="text">
+    for (let i = 1; i < row.children.length - 1; i++) {
+      // Build the text input and its properties
+      let input = document.createElement("input");
+      input.type = "text";
+      input.autofocus = i === 1 ? true : false;
+      input.value = `${rowRestoreValues[i]}`;
+      input.onmouseover =
+        "this.setSelectionRange(this.value.length,this.value.length);";
+      input.onfocus =
+        "this.setSelectionRange(this.value.length,this.value.length);";
+
+      // Build the parent <td>
+      let newEditableColumn = document.createElement("td");
+      newEditableColumn.appendChild(input);
+
+      // Replace row <td> with this newly built <td>
+      row.replaceChild(newEditableColumn, row.children[i]);
+    }
+
+    /* CODE THAT WAS REFACTORED
+    
+    const newArtist = document.createElement("td");
+    newArtist.appendChild(document.createElement())
+
+    // replace artist column content with input field
     newArtist.innerHTML = `<input type="text" autofocus value="${artist.innerText}"
     onmouseover="this.setSelectionRange(this.value.length,this.value.length);"
     onfocus="this.setSelectionRange(this.value.length,this.value.length);"">`;
 
     row.replaceChild(newArtist, artist);
 
+    // grab td column holding label name | create new td column to be created
     const label = row.children[2];
-    const newLabel = document.createElement('td');
+    const newLabel = document.createElement("td");
 
+    // build new td column contents (text input w value)
     newLabel.innerHTML = `<input type="text" autofocus value="${label.innerText}"
     onmouseover="this.setSelectionRange(this.value.length,this.value.length);"
     onfocus="this.setSelectionRange(this.value.length,this.value.length);"">`;
+    */
 
-    cell.innerHTML = `
+    // update button column buttons: edit/delete -> save/cancel
+    newButtonCell = document.createElement("td");
+    newButtonCell.innerHTML = `
     <button class="button is-small is-primary" id="editBtn${rowId}" style="margin-right:2px;">
     <strong>Save</strong>
     <span class="icon is-small">
@@ -46,24 +88,37 @@ edit.forEach((button) =>
     </span>
     </button>
     `;
+    row.replaceChild(newButtonCell, oldButtonCell);
 
-    document.getElementById(`editBtn${rowId}`).addEventListener('click', () => {
-      console.log('you made it to edit');
+    // Add listener to SAVE button
+    document.getElementById(`editBtn${rowId}`).addEventListener("click", () => {
+      console.log("you made it to edit");
       // save the row
     });
 
-    document.getElementById(`delBtn${rowId}`).addEventListener('click', () => {
-      console.log('you made it to cancel');
-      // cancel and reset the row
+    // Add listener to CANCEL button
+    document.getElementById(`delBtn${rowId}`).addEventListener("click", () => {
+      console.log("you made it to cancel");
+
+      let row = document.getElementById(`${rowId}`);
+
+      console.log(row);
+      for (let i = 0; i < row.children.length; i++) {
+        row.children[i].innerHTML = rowRestoreValues[i];
+      }
+
+      // NEED TO ADD NEW LISTENER TO RESTORED EDIT BUTTON
+
+      editInProgress = false;
     });
 
-    row.replaceChild(newLabel, label);
-    newArtist.focus();
+    row.children[1].focus();
   })
 );
 
-del.forEach((button) =>
-  button.addEventListener('click', () => {
+// Add delete functionality to all delete buttons on page
+allDeleteButtons.forEach((button) =>
+  button.addEventListener("click", () => {
     const row = button.parentElement.parentElement;
     row.parentElement.removeChild(row);
   })
