@@ -6,7 +6,7 @@ body {
 
 body {
   background-color: rgb(10, 25, 47);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
 }
 
 :root {
@@ -27,21 +27,21 @@ body {
 
 #logo {
   background-color: rgb(54, 54, 54);
-  margin-bottom: 40px;
+  margin: auto;
+  margin-bottom: 50px;
   font-size: 2em;
   color: whitesmoke;
-  font-family: "Crimson Text", serif;
-}
-
-#navigation {
-  margin-top: 10px;
+  font-family: 'Crimson Text', serif;
+  border-radius: 5px;
+  width: 82%;
 }
 
 .level {
-  font-family: "Crimson Text", serif;
+  font-family: 'Crimson Text', serif;
 }
 
 #navigation {
+  margin-top: 20px;
   align-self: center;
   width: 70%;
 }

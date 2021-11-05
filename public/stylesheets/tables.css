@@ -7,7 +7,7 @@ body {
 
 body {
   background-color: rgb(211, 211, 211);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important;
+  font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif !important;
 }
 
 #form-container {
