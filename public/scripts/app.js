@@ -27,17 +27,20 @@ const addEditButtonListener = (editButton) => {
     rowRestoreValues = Object.values(row.children).map(
       (child) => child.innerHTML
     );
-    // for (let i = 0; i < row.children.length; i++) {
-    //   rowRestoreValues.push(row.children[i].innerHTML);
-    // }
     rowRestoreValues.push(oldButtonCell);
 
     // Grab all columns from row except first and last
     // Create new: <td> -> <input type="text">
     for (let i = 1; i < row.children.length - 1; i++) {
       // Build the text input and its properties
+<<<<<<< HEAD
       let input = document.createElement("input");
       input.type = "text";
+=======
+      const input = document.createElement('input');
+      input.id = `i${i}`;
+      input.type = 'text';
+>>>>>>> 3ff7c7d62fe3536bcb46ec0b9eda052c083f7933
       input.autofocus = i === 1 ? true : false;
       input.value = `${rowRestoreValues[i]}`;
       input.onmouseover =
@@ -46,7 +49,11 @@ const addEditButtonListener = (editButton) => {
         "this.setSelectionRange(this.value.length,this.value.length);";
 
       // Build the parent <td>
+<<<<<<< HEAD
       let newEditableColumn = document.createElement("td");
+=======
+      const newEditableColumn = document.createElement('td');
+>>>>>>> 3ff7c7d62fe3536bcb46ec0b9eda052c083f7933
       newEditableColumn.appendChild(input);
 
       // Replace row <td> with this newly built <td>
@@ -73,9 +80,23 @@ const addEditButtonListener = (editButton) => {
     row.replaceChild(newButtonCell, oldButtonCell);
 
     // Add listener to SAVE button
+<<<<<<< HEAD
     document.getElementById(`saveBtn${rowId}`).addEventListener("click", () => {
       console.log("you made it to edit");
       // save the row
+=======
+    document.getElementById(`editBtn${rowId}`).addEventListener('click', () => {
+      const rowCells = Object.values(row.children);
+
+      // get user input values
+      const values = rowCells
+        .filter((child) => child.firstChild.nodeName === 'INPUT')
+        .map((td) => td.firstChild.value);
+
+      values.forEach((value, i) => {
+        rowCells[i + 1].innerHTML = `<td>${value}</td>`;
+      });
+>>>>>>> 3ff7c7d62fe3536bcb46ec0b9eda052c083f7933
     });
 
     // Add listener to CANCEL button
