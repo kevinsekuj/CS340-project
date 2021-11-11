@@ -1,18 +1,27 @@
-const Joi = require("joi");
+const Joi = require('joi');
+const connection = require('../utils/dbcon');
 
-Artist = {};
+const Artist = {
+  validateArtist: () => {},
 
-Artist.validateArtist = (artist) => {
-  const schema = Joi.object({
-    artistId: Joi.number().integer().required(),
+  readAll: async () => {
+    const con = await connection();
 
-    artistName: Joi.string().min(1).max(255).required(),
+    const query = `SELECT * from ARTISTS;`;
+    const [rows, fields] = await con.execute(query);
 
-    albumId: Joi.number().integer(),
-  });
-  return schema.validate(artist);
-  // -> { value: { artistId: 1, artistName: "Kanye West", album } }
-  // -> { value: {}, error: '"artistId" is required' }
+    await con.end();
+
+    return rows;
+  },
+
+  readFromId: () => {},
+
+  create: () => {},
+
+  update: () => {},
+
+  delete: () => {},
 };
 
 module.exports = Artist;

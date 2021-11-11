@@ -1,9 +1,6 @@
-module.exports.index = (req, res) => {
-  const fakeData = [
-    { artistId: 1, artistName: "Crystal Castles", labelId: 2 },
-    { artistId: 2, artistName: "Hikaru Utada", labelId: 1 },
-    { artistId: 3, artistName: "Kanye West", labelId: 53 },
-  ];
+const Artist = require('../models/artist');
 
-  res.render("tables/artists", { fakeData });
+module.exports.index = async (req, res) => {
+  const data = await Artist.readAll();
+  res.render('tables/artists', { data });
 };
