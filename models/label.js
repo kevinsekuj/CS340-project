@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const connection = require('../utils/dbcon');
+const Joi = require("joi");
+const connection = require("../utils/dbcon");
 
 const Label = {
   validateLabel: () => {},
@@ -7,7 +7,7 @@ const Label = {
   readAll: async () => {
     const con = await connection();
 
-    const query = `SELECT * from LABELS;`;
+    const query = `SELECT labelID, labelName, DATE_FORMAT(dateFounded, '%M %d, %Y') AS dateFounded from LABELS;`;
     const [rows, fields] = await con.execute(query);
 
     await con.end();

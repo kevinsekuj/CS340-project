@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const connection = require('../utils/dbcon');
+const Joi = require("joi");
+const connection = require("../utils/dbcon");
 
 const Album = {
   validateAlbum: () => {},
@@ -7,7 +7,7 @@ const Album = {
   readAll: async () => {
     const con = await connection();
 
-    const query = `SELECT * from ALBUMS;`;
+    const query = `SELECT albumID, albumName, DATE_FORMAT(releaseDate, '%M %d, %Y') AS releaseDate, artistID FROM albums;`;
     const [rows, fields] = await con.execute(query);
 
     await con.end();
