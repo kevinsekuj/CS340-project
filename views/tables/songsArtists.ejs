@@ -46,19 +46,17 @@
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <th>Song name</th>
+          <!-- <th>Song name</th> -->
           <th>Song ID</th>
           <th>Artist ID</th>
-          <th>Artist name</th>
+          <!-- <th>Artist name</th> -->
         </tr>
       </thead>
       <tbody>
-        <% fakeData.forEach(row => { %>
-        <tr id="<%=row.songId%>">
-          <td><%=row.songName%></td>
-          <td><%=row.songId%></td>
-          <td><%=row.artistId%></td>
-          <td><%=row.artistName%></td>
+        <% data.forEach(row => { %>
+        <tr id="<%=data.indexOf(row)%>">
+          <td><%=row.songID%></td>
+          <td><%=row.artistID%></td>
         </tr>
         <% }) %>
       </tbody>
