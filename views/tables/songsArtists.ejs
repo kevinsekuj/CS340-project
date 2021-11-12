@@ -46,19 +46,36 @@
     <table class="table is-fullwidth">
       <thead>
         <tr>
-          <!-- <th>Song name</th> -->
+          <th>Song name</th>
           <th>Song ID</th>
           <th>Artist ID</th>
-          <!-- <th>Artist name</th> -->
+          <th>Artist name</th>
         </tr>
       </thead>
       <tbody>
         <% data.forEach(row => { %>
         <tr id="<%=data.indexOf(row)%>">
+          <td><%=row.songName%></td>
           <td><%=row.songID%></td>
           <td><%=row.artistID%></td>
+          <td><%=row.artistName%></td>
         </tr>
         <% }) %>
+        <tr>
+          <td colspan="4">
+            <em>
+              * Note: Song & Artist names are not part of SONGS_ARTISTS table,
+              they are only listed for simpler user experience. <br />
+              The database table SONGS_ARTISTS maps a single songID to a single
+              artistID per the schema.
+            </em>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <em> </em>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
