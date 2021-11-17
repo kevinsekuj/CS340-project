@@ -40,6 +40,7 @@
                 <strong>Submit</strong>
               </button>
             </div>
+          </div>
         </form>
       </div>
     </div>
@@ -49,35 +50,24 @@
   <div class="container mb-5 ml-5" id="form-container">
     <form id="searchForm" action="/artist">
       <div class="box">
-        <h5 class="title is-5">SEARCH existing artist</h5>
+        <form id="searchForm">
+          <h5 class="title is-5">SEARCH existing artist by name</h5>
 
-        <div class="field">
-          <label class="label">SELECT column</label>
-          <div class="control">
-            <div class="select">
-              <select>
-                <option value="artistID">Artist ID</option>
-                <option value="artistName">Artist name</option>
-                <option value="labelID">Label ID</option>
-              </select>
+          <div class="field">
+            <label class="label">Search for...</label>
+            <div class="control">
+              <input name="searchQuery" class="input" type="text" placeholder="" />
             </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="label">Search for...</label>
-          <div class="control">
-            <input name="searchQuery" class="input" type="text" placeholder="" />
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="searchBtn" class="button is-small is-link">
+                <strong>Search</strong>
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button id="searchBtn" class="button is-small is-link">
-              <strong>Search</strong>
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
   </div>
   </form>
