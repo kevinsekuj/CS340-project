@@ -1,20 +1,20 @@
-const allEditButtons = document.querySelectorAll('.editButton');
-const allDeleteButtons = document.querySelectorAll('.deleteButton');
+const allEditButtons = document.querySelectorAll(".editButton");
+const allDeleteButtons = document.querySelectorAll(".deleteButton");
 let rowRestoreValues = [];
 let editInProgress = false;
 
 // Trim function for text inputs
-if (typeof String.prototype.trim === 'undefined') {
+if (typeof String.prototype.trim === "undefined") {
   String.prototype.trim = function () {
-    return String(this).replace(/^\s+|\s+$/g, '');
+    return String(this).replace(/^\s+|\s+$/g, "");
   };
 }
 
 const addEditButtonListener = (editButton) => {
-  editButton.addEventListener('click', () => {
+  editButton.addEventListener("click", () => {
     if (editInProgress) {
       alert(
-        'Save or cancel modifications to your row before modifying another row.'
+        "Save or cancel modifications to your row before modifying another row."
       );
       return;
     }
@@ -26,7 +26,7 @@ const addEditButtonListener = (editButton) => {
     // grab td column holding edit & delete | row | rowId | artist name column
     const oldButtonCell = editButton.parentElement;
     const row = editButton.parentElement.parentElement;
-    const rowId = row.getAttribute('id');
+    const rowId = row.getAttribute("id");
 
     // Save pre-edited values in case user cancels modifications
     // e.g. array will save [ "Crystal Castles", "2"] for artist & label ID
@@ -40,18 +40,18 @@ const addEditButtonListener = (editButton) => {
     // Create new: <td> -> <input type="text">
     for (let i = 1; i < row.children.length - 1; i++) {
       // Build the text input and its properties
-      const input = document.createElement('input');
+      const input = document.createElement("input");
       input.id = `i${i}`;
-      input.type = 'text';
+      input.type = "text";
       input.autofocus = i === 1 ? true : false;
       input.value = `${rowRestoreValues[i].trim()}`;
       input.onmouseover =
-        'this.setSelectionRange(this.value.length,this.value.length);';
+        "this.setSelectionRange(this.value.length,this.value.length);";
       input.onfocus =
-        'this.setSelectionRange(this.value.length,this.value.length);';
+        "this.setSelectionRange(this.value.length,this.value.length);";
 
       // Build the parent <td>
-      const newEditableColumn = document.createElement('td');
+      const newEditableColumn = document.createElement("td");
       newEditableColumn.appendChild(input);
 
       // Replace row <td> with this newly built <td>
@@ -59,7 +59,7 @@ const addEditButtonListener = (editButton) => {
     }
 
     // update button column buttons: edit/delete -> save/cancel
-    newButtonCell = document.createElement('td');
+    newButtonCell = document.createElement("td");
     newButtonCell.innerHTML = `
     <button class="button is-small is-primary" id="saveBtn${rowId}" style="margin-right:2px;">
     <strong>Save</strong>
@@ -78,12 +78,12 @@ const addEditButtonListener = (editButton) => {
     row.replaceChild(newButtonCell, oldButtonCell);
 
     // Add listener to SAVE button
-    document.getElementById(`saveBtn${rowId}`).addEventListener('click', () => {
+    document.getElementById(`saveBtn${rowId}`).addEventListener("click", () => {
       const rowCells = Object.values(row.children);
 
       // get user input values
       const values = rowCells
-        .filter((child) => child.firstChild.nodeName === 'INPUT')
+        .filter((child) => child.firstChild.nodeName === "INPUT")
         .map((td) => td.firstChild.value);
 
       values.forEach((value, i) => {
@@ -110,7 +110,7 @@ const addEditButtonListener = (editButton) => {
     // Add listener to CANCEL button
     document
       .getElementById(`cancelBtn${rowId}`)
-      .addEventListener('click', () => {
+      .addEventListener("click", () => {
         for (let i = 0; i < row.children.length; i++) {
           row.children[i].innerHTML = rowRestoreValues[i];
         }
@@ -133,21 +133,21 @@ const addEditButtonListener = (editButton) => {
 };
 
 const addDeleteButtonListener = (deleteButtonElement) => {
-  deleteButtonElement.addEventListener('click', (e) => {
+  deleteButtonElement.addEventListener("click", (e) => {
     if (editInProgress) {
       alert(
-        'Save or cancel modifications to your row before modifying another row.'
+        "Save or cancel modifications to your row before modifying another row."
       );
       return;
     }
     const row = deleteButtonElement.parentElement.parentElement;
-    const id = row.getAttribute('id');
+    const id = row.getAttribute("id");
     row.parentElement.removeChild(row);
 
     const deleteRequest = async (id) => {
-      await fetch('/artist', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch("/artist", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: id }),
       });
     };
@@ -164,13 +164,19 @@ allEditButtons.forEach((button) => addEditButtonListener(button));
 allDeleteButtons.forEach((button) => addDeleteButtonListener(button));
 
 // Functionality for navbar burger resizing
-const navbarBurger = document.querySelectorAll('.navbar-burger');
+const navbarBurger = document.querySelectorAll(".navbar-burger");
 navbarBurger.forEach((el) => {
-  el.addEventListener('click', () => {
+  el.addEventListener("click", () => {
     const target = el.dataset.target;
     const targ = document.getElementById(target);
 
-    el.classList.toggle('is-active');
-    targ.classList.toggle('is-active');
+    el.classList.toggle("is-active");
+    targ.classList.toggle("is-active");
   });
+});
+
+// Search popup
+const searchBtn = document.getElementById("searchBtn");
+searchBtn.addEventListener("click", () => {
+  window.open("url here", "_blank").focus();
 });
