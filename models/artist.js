@@ -19,16 +19,17 @@ const Artist = {
 
   create: async (data) => {
     // error handling, empty body etc
-
-    const { artistName, labelId } = data;
-
     const con = await connection();
+    const { artistName, labelId } = data;
 
     const query = `INSERT INTO ARTISTS (artistName, labelID)
     VALUES ('${artistName}', '${labelId}');`;
 
-    await con.execute(query, [artistName, labelId]);
+    const rows = await con.execute(query, [artistName, labelId]);
     await con.end();
+
+    const { newRowId } = rows[0];
+    return newRowId;
   },
 
   update: () => {},

@@ -9,15 +9,14 @@ module.exports.index = async (req, res) => {
 module.exports.create = async (req, res) => {
   const { artistName, labelId } = req.body;
 
-  await Artist.create({
+  const newRowId = await Artist.create({
     artistName: artistName,
     labelId: labelId,
   });
 
-  // if we don't want refreshes
-  // res.send(JSON.stringify({ artistName, labelId }));
+  res.send(JSON.stringify({ artistName, labelId, newRowId }));
 
-  res.redirect('artist');
+  // res.redirect('artist');
 };
 
 module.exports.update = async (req, res) => {};

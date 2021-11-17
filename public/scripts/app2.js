@@ -14,8 +14,10 @@ addForm.addEventListener('submit', (e) => {
       body: JSON.stringify(body),
     });
 
-    return response.json();
+    const res = await response.json();
+    console.log(res);
+    return res;
   };
-  addArtist();
-  // e.preventDefault();
+  addArtist().then((data) => console.log(data));
+  e.preventDefault();
 });

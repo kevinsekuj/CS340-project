@@ -1,9 +1,6 @@
-const Joi = require("joi");
-const connection = require("../utils/dbcon");
+const connection = require('../utils/dbcon');
 
 const Label = {
-  validateLabel: () => {},
-
   readAll: async () => {
     const con = await connection();
 
@@ -14,14 +11,6 @@ const Label = {
 
     return rows;
   },
-
-  readFromId: () => {},
-
-  create: () => {},
-
-  update: () => {},
-
-  delete: () => {},
 };
 
 module.exports = Label;

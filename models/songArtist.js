@@ -1,9 +1,6 @@
-const Joi = require("joi");
-const connection = require("../utils/dbcon");
+const connection = require('../utils/dbcon');
 
 const SongArtist = {
-  validateSongArtist: () => {},
-
   readAll: async () => {
     const con = await connection();
 
@@ -20,14 +17,6 @@ const SongArtist = {
 
     return rows;
   },
-
-  readFromId: () => {},
-
-  create: () => {},
-
-  update: () => {},
-
-  delete: () => {},
 };
 
 module.exports = SongArtist;
