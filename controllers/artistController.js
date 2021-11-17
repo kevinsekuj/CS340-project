@@ -19,3 +19,12 @@ module.exports.create = async (req, res) => {
 
   res.redirect('artist');
 };
+
+module.exports.update = async (req, res) => {};
+
+module.exports.delete = async (req, res) => {
+  const { id } = req.body;
+
+  await Artist.delete(id);
+  res.redirect('artist');
+};

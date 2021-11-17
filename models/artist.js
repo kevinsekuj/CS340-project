@@ -28,11 +28,18 @@ const Artist = {
     VALUES ('${artistName}', '${labelId}');`;
 
     await con.execute(query, [artistName, labelId]);
+    await con.end();
   },
 
   update: () => {},
 
-  delete: () => {},
+  delete: async (id) => {
+    const con = await connection();
+    const query = `DELETE FROM ARTISTS WHERE artistID = ${id}`;
+
+    await con.execute(query);
+    await con.end();
+  },
 };
 
 module.exports = Artist;
