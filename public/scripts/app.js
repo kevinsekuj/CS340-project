@@ -175,8 +175,8 @@ navbarBurger.forEach((el) => {
   });
 });
 
-// Search popup
+// Search results popup
 const searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", () => {
-  window.open("url here", "_blank").focus();
+  window.open("/search", "_blank").focus();
 });
