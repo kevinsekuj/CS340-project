@@ -152,7 +152,7 @@ const addDeleteButtonListener = (deleteButtonElement) => {
       });
     };
 
-    deleteRequest(id); //.catch(e => console.log(e));
+    deleteRequest(id);
     e.preventDefault();
   });
 };
@@ -163,6 +163,7 @@ allEditButtons.forEach((button) => addEditButtonListener(button));
 // Add delete functionality to all delete buttons on page
 allDeleteButtons.forEach((button) => addDeleteButtonListener(button));
 
+// Functionality for navbar burger resizing
 const navbarBurger = document.querySelectorAll('.navbar-burger');
 navbarBurger.forEach((el) => {
   el.addEventListener('click', () => {

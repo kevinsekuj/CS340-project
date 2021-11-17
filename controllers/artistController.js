@@ -14,9 +14,9 @@ module.exports.create = async (req, res) => {
     labelId: labelId,
   });
 
-  res.send(JSON.stringify({ artistName, labelId, newRowId }));
-
-  // res.redirect('artist');
+  //res.send(JSON.stringify({ artistName, labelId, newRowId }));
+  console.log('This code just ran.');
+  res.redirect('artist');
 };
 
 module.exports.update = async (req, res) => {};
