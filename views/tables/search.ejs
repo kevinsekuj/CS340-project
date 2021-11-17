@@ -1,0 +1,42 @@
+<% layout('/partials/table') %>
+
+<section class="hero is-dark mb-5">
+  <div class="hero-body">
+    <p class="title" style="color: whitesmoke;">
+      Artists
+    </p>
+    <p class="subtitle mt-1" style="color: whitesmoke;">
+      Search results for: "${}"
+    </p>
+  </div>
+</section>
+
+<!-- Artist Table Data -->
+<div class="container">
+  <div class="box">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Artist ID</th>
+          <th>Artist name</th>
+          <th>Label ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(row=> { %>
+        <tr id="<%=row.artistID%>">
+          <td>
+            <%=row.artistID%>
+          </td>
+          <td>
+            <%=row.artistName%>
+          </td>
+          <td>
+            <%=row.labelID%>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
