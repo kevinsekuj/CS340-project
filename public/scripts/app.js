@@ -176,28 +176,28 @@ navbarBurger.forEach((el) => {
 });
 
 // Search results popup
-const searchBtn = document.getElementById("searchForm");
-searchBtn.addEventListener("submit", (e) => {
-  const searchArtist = async () => {
-    const body = {
-      searchQuery: "hello",
-    };
-    console.log(body);
+// const searchBtn = document.getElementById("searchForm");
+// searchBtn.addEventListener("submit", (e) => {
+//   const searchArtist = async () => {
+//     const body = {
+//       searchQuery: "hello",
+//     };
+//     console.log(body);
 
-    // await fetch('/search', {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(body),
-    // });
+//     // await fetch('/search', {
+//     //   method: 'GET',
+//     //   headers: { 'Content-Type': 'application/json' },
+//     //   body: JSON.stringify(body),
+//     // });
 
-    // const res = await response.json();
-    // console.log(res);
-    // return res;
-  };
+//     // const res = await response.json();
+//     // console.log(res);
+//     // return res;
+//   };
 
-  const searchParam = document.getElementById("searchQueryInput").value;
-  const url = window.location.href;
-  searchArtist();
-  window.open("/search", "popup", "width=500,height=500");
-  e.preventDefault();
-});
+//   const searchParam = document.getElementById("searchQueryInput").value;
+//   const url = window.location.href;
+//   searchArtist();
+//   window.open("/search", "popup", "width=500,height=500");
+//   e.preventDefault();
+// });

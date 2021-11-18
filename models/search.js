@@ -5,6 +5,7 @@ const Search = {
     const con = await connection();
 
     const query = `SELECT * FROM artists WHERE artistName LIKE '%ika%';`;
+    console.log(query);
     const [rows] = await con.execute(query);
     console.log(rows);
 
