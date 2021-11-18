@@ -175,7 +175,7 @@ navbarBurger.forEach((el) => {
   });
 });
 
-// Search results popup
+// Functionality for search results popup
 const searchBtn = document.getElementById("searchForm");
 searchBtn.addEventListener("submit", (e) => {
   // popUpWindow function will center the popup in the parent window

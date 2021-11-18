@@ -1,4 +1,4 @@
-const Search = require("../models/Search");
+const Search = require("../models/search");
 
 module.exports.index = async (req, res) => {
   const { searchQuery } = req.query;
