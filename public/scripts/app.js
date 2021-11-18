@@ -31,47 +31,73 @@ const addEditButtonListener = (editButton) => {
     // Save pre-edited values in case user cancels modifications
     // e.g. array will save [ "Crystal Castles", "2"] for artist & label ID
 
-    rowRestoreValues = Object.values(row.children).map(
-      (child) => child.innerHTML
+    rowRestoreValues = Object.values(row.children).map((child) =>
+      child.innerHTML.trim()
     );
     rowRestoreValues.push(oldButtonCell);
 
     // Grab all columns from row except first and last
     // Create new: <td> -> <input type="text">
-    for (let i = 1; i < row.children.length - 1; i++) {
-      // Build the text input and its properties
-      const input = document.createElement("input");
-      input.id = `i${i}`;
-      input.type = "text";
-      input.autofocus = i === 1 ? true : false;
-      input.value = `${rowRestoreValues[i].trim()}`;
-      input.onmouseover =
-        "this.setSelectionRange(this.value.length,this.value.length);";
-      input.onfocus =
-        "this.setSelectionRange(this.value.length,this.value.length);";
 
-      // Build the parent <td>
-      const newEditableColumn = document.createElement("td");
-      newEditableColumn.appendChild(input);
+    // for (let i = 1; i < row.children.length - 1; i++) {
+    // Build the text input and its properties
+    const artistEditableInput = document.createElement("input");
+    artistEditableInput.type = "text";
+    // input.autofocus = i === 1 ? true : false;
+    artistEditableInput.value = `${rowRestoreValues[1].trim()}`;
+    artistEditableInput.onmouseover =
+      "this.setSelectionRange(this.value.length,this.value.length);";
+    artistEditableInput.onfocus =
+      "this.setSelectionRange(this.value.length,this.value.length);";
+    artistEditableInput.classList.add("input", "is-small", "is-primary");
+    artistEditableInput.style.width = "50%";
 
-      // Replace row <td> with this newly built <td>
-      row.replaceChild(newEditableColumn, row.children[i]);
+    // Build the parent <td>
+    let newEditableColumn = document.createElement("td");
+    newEditableColumn.appendChild(artistEditableInput);
+
+    // Replace row <td> with this newly built <td>
+    row.replaceChild(newEditableColumn, row.children[1]);
+
+    const currentLabels = Object.values(
+      document.getElementById("labelsDropdown").getElementsByTagName("option")
+    );
+    const labelIdDropdown = document.createElement("select");
+    labelIdDropdown.classList.add("select");
+    for (let i = 0; i < currentLabels.length; i++) {
+      let option = document.createElement("option");
+      option.value = currentLabels[i].value;
+      option.text = currentLabels[i].text;
+      labelIdDropdown.appendChild(option);
     }
+    labelIdDropdown.value = rowRestoreValues[2].trim();
+
+    newEditableColumn = document.createElement("td");
+    let selectDiv = document.createElement("div");
+    selectDiv.classList.add("control", "select", "is-primary", "is-small");
+    selectDiv.appendChild(labelIdDropdown);
+    newEditableColumn.appendChild(selectDiv);
+    row.replaceChild(newEditableColumn, row.children[2]);
+
+    row.children[1].firstElementChild.focus();
+    // }
 
     // update button column buttons: edit/delete -> save/cancel
     newButtonCell = document.createElement("td");
     newButtonCell.innerHTML = `
-    <button class="button is-small is-primary" id="saveBtn${rowId}" style="margin-right:2px;">
-    <strong>Save</strong>
+    <button 
+      class="button is-small is-primary" id="saveBtn${rowId}">
     <span class="icon is-small">
       <i class="fas fa-check" aria-hidden="true"></i>
     </span>
+    <strong>Confirm Edits</strong>
     </button>
-    <button class="button is-small is-danger" id="cancelBtn${rowId}" style="margin-right:2px;">
-    <strong>Cancel</strong>
-    <span class="icon is-small">
-      <i class="fas fa-ban" aria-hidden="true"></i>
-    </span>
+
+    <button 
+      class="button is-small is-danger is-light" 
+      id="cancelBtn${rowId}">
+      <strong>Discard</strong>
+
     </button>
     `;
 
