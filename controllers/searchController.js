@@ -1,8 +1,11 @@
 const Search = require("../models/Search");
-const { search } = require("../routes/home");
 
 module.exports.index = async (req, res) => {
   const { searchQuery } = req.query;
-  const data = await Search.find();
+  const results = await Search.find(searchQuery);
+  const data = {
+    query: searchQuery,
+    results: results,
+  };
   res.render("tables/search", { data });
 };

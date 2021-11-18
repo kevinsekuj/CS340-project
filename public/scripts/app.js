@@ -176,28 +176,22 @@ navbarBurger.forEach((el) => {
 });
 
 // Search results popup
-// const searchBtn = document.getElementById("searchForm");
-// searchBtn.addEventListener("submit", (e) => {
-//   const searchArtist = async () => {
-//     const body = {
-//       searchQuery: "hello",
-//     };
-//     console.log(body);
-
-//     // await fetch('/search', {
-//     //   method: 'GET',
-//     //   headers: { 'Content-Type': 'application/json' },
-//     //   body: JSON.stringify(body),
-//     // });
-
-//     // const res = await response.json();
-//     // console.log(res);
-//     // return res;
-//   };
-
-//   const searchParam = document.getElementById("searchQueryInput").value;
-//   const url = window.location.href;
-//   searchArtist();
-//   window.open("/search", "popup", "width=500,height=500");
-//   e.preventDefault();
-// });
+const searchBtn = document.getElementById("searchForm");
+searchBtn.addEventListener("submit", (e) => {
+  // popUpWindow function will center the popup in the parent window
+  const popupWindow = (url, windowName, win, w, h) => {
+    const y = win.top.outerHeight / 2 + win.top.screenY - h / 2;
+    const x = win.top.outerWidth / 2 + win.top.screenX - w / 2;
+    return win.open(
+      url,
+      windowName,
+      `toolbar=no, location=no, directories=no, status=no, 
+      menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, 
+      width=${w}, height=${h}, top=${y}, left=${x}`
+    );
+  };
+  const searchParam = document.getElementById("searchQueryInput").value;
+  const url = "/search?searchQuery=" + searchParam;
+  popupWindow(url, "popup", window, 800, 500);
+  e.preventDefault();
+});

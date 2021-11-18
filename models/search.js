@@ -1,13 +1,11 @@
 const connection = require("../utils/dbcon");
 
 const Search = {
-  find: async () => {
+  find: async (userSearch) => {
     const con = await connection();
 
-    const query = `SELECT * FROM artists WHERE artistName LIKE '%ika%';`;
-    console.log(query);
+    const query = `SELECT * FROM artists WHERE artistName LIKE '%${userSearch}%';`;
     const [rows] = await con.execute(query);
-    console.log(rows);
 
     await con.end();
 
