@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const connection = require('../utils/dbcon');
+const Joi = require("joi");
+const connection = require("../utils/dbcon");
 
 const Artist = {
   validateArtist: () => {},
@@ -21,18 +21,38 @@ const Artist = {
     // error handling, empty body etc
     const con = await connection();
     const { artistName, labelId } = data;
+    let query;
 
-    const query = `INSERT INTO ARTISTS (artistName, labelID)
-    VALUES ('${artistName}', '${labelId}');`;
+    if (labelId === "null") {
+      query = `INSERT INTO ARTISTS (artistName) VALUES ('${artistName}');`;
+    } else {
+      query = `
+        INSERT INTO ARTISTS (artistName, labelID)
+        VALUES ('${artistName}', '${labelId}');`;
+    }
 
-    const rows = await con.execute(query, [artistName, labelId]);
+    const [rows] = await con.execute(query);
+    console.log(rows);
     await con.end();
 
-    const { insertId } = rows[0];
+    const { insertId } = rows;
     return insertId;
   },
 
-  update: () => {},
+  update: async (data) => {
+    const con = await connection();
+    const { artistId, artistName, labelId } = data;
+    console.log("data passed to model", data);
+
+    const query = `
+    UPDATE ARTISTS
+    SET artistName = ${artistName}, labelId = ${labelId}
+    WHERE artistId = ${artistId}
+    `;
+
+    await con.execute(query);
+    await con.end();
+  },
 
   delete: async (id) => {
     const con = await connection();

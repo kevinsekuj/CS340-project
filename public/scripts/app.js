@@ -1,3 +1,4 @@
+// const e = require("express");
 const allEditButtons = document.querySelectorAll(".editButton");
 const allDeleteButtons = document.querySelectorAll(".deleteButton");
 let rowRestoreValues = [];
@@ -13,7 +14,7 @@ if (typeof String.prototype.trim === "undefined") {
 }
 
 /*-----------------------------------------------------------------------------
-    Artist Page: Edit Button Listeners
+    Artist Page: EDIT Button Listeners
 -----------------------------------------------------------------------------*/
 const addEditButtonListener = (editButton) => {
   editButton.addEventListener("click", () => {
@@ -35,7 +36,6 @@ const addEditButtonListener = (editButton) => {
 
     // Save pre-edited values in case user cancels modifications
     // e.g. array will save [ "Crystal Castles", "2"] for artist & label ID
-
     rowRestoreValues = Object.values(row.children).map((child) =>
       child.innerHTML.trim()
     );
@@ -43,7 +43,7 @@ const addEditButtonListener = (editButton) => {
 
     // Convert table row cells into editable inputs
 
-    // Build the text input for Artist Name
+    // 1) Build the text input for Artist Name
     const artistEditableInput = document.createElement("input");
     artistEditableInput.type = "text";
     artistEditableInput.value = `${rowRestoreValues[1].trim()}`;
@@ -61,7 +61,7 @@ const addEditButtonListener = (editButton) => {
     // Replace row <td> with this newly built <td>
     row.replaceChild(newEditableColumn, row.children[1]);
 
-    // Build the dropdown options for Label ID
+    // 2) Build the dropdown options for Label ID
     const currentLabels = Object.values(
       document.getElementById("labelsDropdown").getElementsByTagName("option")
     );
@@ -83,9 +83,8 @@ const addEditButtonListener = (editButton) => {
     row.replaceChild(newEditableColumn, row.children[2]);
 
     row.children[1].firstElementChild.focus();
-    // }
 
-    // update button column buttons: edit/delete -> save/cancel
+    // 3) update button column buttons: edit/delete -> save/cancel
     newButtonCell = document.createElement("td");
     newButtonCell.innerHTML = `
     <button 
@@ -106,7 +105,7 @@ const addEditButtonListener = (editButton) => {
 
     row.replaceChild(newButtonCell, oldButtonCell);
 
-    // Add listener to SAVE button
+    // SAVE button listener
     document.getElementById(`saveBtn${rowId}`).addEventListener("click", () => {
       const rowCells = Object.values(row.children);
 
@@ -137,11 +136,27 @@ const addEditButtonListener = (editButton) => {
       // Add listener to cancel button
       addDeleteButtonListener(deleteButton);
 
+      const editRequest = async (data) => {
+        await fetch("/artist"),
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          };
+      };
+      const artist = {
+        artistId: rowId,
+        artistName: values[0],
+        labelId: values[1],
+      };
+      console.log("data passed to edit request", artist);
+      editRequest(artist);
+
       rowRestoreValues.length = 0;
       editInProgress = false;
     });
 
-    // Add listener to CANCEL button
+    // CANCEL button listener
     document
       .getElementById(`cancelBtn${rowId}`)
       .addEventListener("click", () => {
@@ -167,6 +182,9 @@ const addEditButtonListener = (editButton) => {
   });
 };
 
+/*-----------------------------------------------------------------------------
+    Artist page: DELETE Button Listener
+-----------------------------------------------------------------------------*/
 const addDeleteButtonListener = (deleteButtonElement) => {
   deleteButtonElement.addEventListener("click", (e) => {
     if (editInProgress) {
