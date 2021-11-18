@@ -15,6 +15,6 @@ between musicians, songs, albums, and labels.
 
 ## Development
 
-This project was developed by [Daniel Sarran](https://github.com/daniel-sarran) and [Kevin Sekuj](https://github.com/daniel-sarran) for
+This project was developed by [Daniel Sarran](https://github.com/daniel-sarran) and [Kevin Sekuj](https://github.com/kevinsekuj) for
 Oregon State University's CS340 Databases course. The web application is powered by a Node-Express server integrated with a MySQL database
 and hosted on Heroku.
