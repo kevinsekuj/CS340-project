@@ -11,6 +11,29 @@ const Album = {
 
     return rows;
   },
+
+  create: async(data) => {
+    const con = await connection();
+    const { albumName, releaseDate, artistId }
+    let query;
+    
+    if (artistId === 'null') {
+      query = `
+        INSERT INTO ALBUMS (albumName, releaseDate)
+        VALUES ('${albumName}', '${releaseDate}');`;
+    } else {
+      query = `
+        INSERT INTO ALBUMS (albumName, releaseDate, artistId)
+        VALUES ('${albumName}', '${releaseDate}', '${artistId}')`
+    }
+
+    const [rows] = await con.execute(query);
+    console.log(rows);
+    await con.end();
+
+    const { insertId } = rows;
+    return insertId;
+  }
 };
 
 module.exports = Album;

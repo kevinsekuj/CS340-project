@@ -6,12 +6,9 @@ const Artist = {
 
   readAll: async () => {
     const con = await connection();
-
     const query = `SELECT * from ARTISTS;`;
     const [rows, fields] = await con.execute(query);
-
     await con.end();
-
     return rows;
   },
 
@@ -57,7 +54,6 @@ const Artist = {
   delete: async (id) => {
     const con = await connection();
     const query = `DELETE FROM ARTISTS WHERE artistID = ${id}`;
-
     await con.execute(query);
     await con.end();
   },
