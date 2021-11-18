@@ -28,8 +28,8 @@ const Artist = {
     const rows = await con.execute(query, [artistName, labelId]);
     await con.end();
 
-    const { newRowId } = rows[0];
-    return newRowId;
+    const { insertId } = rows[0];
+    return insertId;
   },
 
   update: () => {},

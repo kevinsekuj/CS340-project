@@ -1,21 +1,21 @@
 const Artist = require('../models/artist');
+const Label = require('../models/label');
 
 module.exports.index = async (req, res) => {
   const data = await Artist.readAll();
+  data['labels'] = await Label.readAll();
 
   res.render('tables/artists', { data });
 };
 
 module.exports.create = async (req, res) => {
-  const { artistName, labelId } = req.body;
+  const { artistName, labelSelect } = req.body;
 
-  const newRowId = await Artist.create({
+  await Artist.create({
     artistName: artistName,
-    labelId: labelId,
+    labelId: labelSelect,
   });
 
-  //res.send(JSON.stringify({ artistName, labelId, newRowId }));
-  console.log('This code just ran.');
   res.redirect('artist');
 };
 
