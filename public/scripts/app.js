@@ -3,13 +3,18 @@ const allDeleteButtons = document.querySelectorAll(".deleteButton");
 let rowRestoreValues = [];
 let editInProgress = false;
 
-// Trim function for text inputs
+/*-----------------------------------------------------------------------------
+    Generic function to trim whitespace from string (from Stack Overflow)
+-----------------------------------------------------------------------------*/
 if (typeof String.prototype.trim === "undefined") {
   String.prototype.trim = function () {
     return String(this).replace(/^\s+|\s+$/g, "");
   };
 }
 
+/*-----------------------------------------------------------------------------
+    Artist Page: Edit Button Listeners
+-----------------------------------------------------------------------------*/
 const addEditButtonListener = (editButton) => {
   editButton.addEventListener("click", () => {
     if (editInProgress) {
@@ -187,13 +192,19 @@ const addDeleteButtonListener = (deleteButtonElement) => {
   });
 };
 
-// Add editing functionality to all edit buttons on page
+/*-----------------------------------------------------------------------------
+    Artist Page: Add listeners to all edit buttons on page
+-----------------------------------------------------------------------------*/
 allEditButtons.forEach((button) => addEditButtonListener(button));
 
-// Add delete functionality to all delete buttons on page
+/*-----------------------------------------------------------------------------
+    Artist Page: Edit Button Listeners
+-----------------------------------------------------------------------------*/
 allDeleteButtons.forEach((button) => addDeleteButtonListener(button));
 
-// Functionality for navbar burger resizing
+/*-----------------------------------------------------------------------------
+    Functionality for navbar burger resizing
+-----------------------------------------------------------------------------*/
 const navbarBurger = document.querySelectorAll(".navbar-burger");
 navbarBurger.forEach((el) => {
   el.addEventListener("click", () => {
@@ -205,7 +216,9 @@ navbarBurger.forEach((el) => {
   });
 });
 
-// Functionality for search results popup
+/*-----------------------------------------------------------------------------
+    Functionality for search results popup
+-----------------------------------------------------------------------------*/
 const searchBtn = document.getElementById("searchForm");
 searchBtn.addEventListener("submit", (e) => {
   // popUpWindow function will center the popup in the parent window
