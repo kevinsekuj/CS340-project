@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const label = require("../controllers/searchController");
+const search = require("../controllers/searchController");
 
 router.route("/").get(search.index);
 
