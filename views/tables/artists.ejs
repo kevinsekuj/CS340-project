@@ -1,142 +1,124 @@
 <% layout('/partials/table') %>
 
-<section class="hero is-dark mb-5">
-  <div class="hero-body">
-    <p class="title" style="color: whitesmoke;">
-      Artists
-    </p>
-    <p class="subtitle mt-1" style="color: whitesmoke;">
-      View, insert, or search for an Artist. An Artist may or may not be signed
-      to a Record Label. An Artist must have at least one song attributed to
-      them.
-    </p>
-  </div>
-</section>
+  <section class="hero is-dark mb-5">
+    <div class="hero-body">
+      <p class="title" style="color: whitesmoke;">
+        Artists
+      </p>
+      <p class="subtitle mt-1" style="color: whitesmoke;">
+        View, insert, or search for an Artist. An Artist may or may not be signed
+        to a Record Label. An Artist must have at least one song attributed to
+        them.
+      </p>
+    </div>
+  </section>
 
-<div class="container" id="form-wrapper">
-  <!-- Insert Artist Form  -->
-  <div class="container mb-5 mr-3" id="form-container">
-    <div class="box">
-      <form id="addForm" method="POST" action="/artist">
-        <h5 class="title is-5">INSERT new artist</h5>
+  <div class="container" id="form-wrapper">
+    <!-- Insert Artist Form  -->
+    <div class="container mb-5 mr-3" id="form-container">
+      <div class="box">
+        <form id="addForm" method="POST" action="/artist">
+          <h5 class="title is-5">INSERT new artist</h5>
 
-        <div class="field">
-          <label class="label">* Artist Name</label>
-          <div class="control">
-            <input
-              name="artistName"
-              id="artistNameInput"
-              class="input"
-              type="text"
-              placeholder=""
-            />
+          <div class="field">
+            <label class="label">* Artist Name</label>
+            <div class="control">
+              <input name="artistName" id="artistNameInput" class="input" type="text" placeholder="" />
+            </div>
           </div>
-        </div>
 
-        <div class="field is-small">
-          <label for="labelSelect" class="label">Label</label>
-          <div class="control select">
-            <select name="labelSelect" id="labelsDropdown">
-              <option value="null">--No Label--</option>
-              <% data.labels.forEach(label=> { %>
-              <option value="<%= label.labelID %>">
-                [<%= label.labelID %>] <%= label.labelName %>
-              </option>
-              <% }) %>
-            </select>
+          <div class="field is-small">
+            <label for="labelSelect" class="label">Label</label>
+            <div class="control select">
+              <select name="labelSelect" id="labelsDropdown">
+                <option value="null">--No Label--</option>
+                <% data.labels.forEach(label=> { %>
+                  <option value="<%= label.labelID %>">
+                    [<%= label.labelID %>] <%= label.labelName %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button
-              id="insertButton"
-              type="submit"
-              class="button is-small is-link"
-            >
-              <strong>Submit</strong>
-            </button>
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="insertButton" type="submit" class="button is-small is-link">
+                <strong>Submit</strong>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Search Artist Form -->
+    <div class="container mb-5 ml-2" id="form-container">
+      <form id="searchForm" method="GET" action="/search">
+        <div class="box">
+          <h5 class="title is-5">SEARCH existing artist</h5>
+
+          <div class="field">
+            <label class="label">Search for...</label>
+            <div class="control">
+              <input name="searchQuery" id="searchQueryInput" class="input" type="text" placeholder="" />
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button id="searchBtn" class="button is-small is-link">
+                <strong>Search</strong>
+              </button>
+            </div>
           </div>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Search Artist Form -->
-  <div class="container mb-5 ml-2" id="form-container">
-    <form id="searchForm" method="GET" action="/search">
-      <div class="box">
-        <h5 class="title is-5">SEARCH existing artist</h5>
-
-        <div class="field">
-          <label class="label">Search for...</label>
-          <div class="control">
-            <input
-              name="searchQuery"
-              id="searchQueryInput"
-              class="input"
-              type="text"
-              placeholder=""
-            />
-          </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button id="searchBtn" class="button is-small is-link">
-              <strong>Search</strong>
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
+  <!-- Artist Table Data -->
+  <div class="container">
+    <div class="box">
+      <h5 class="title is-5">UPDATE / DELETE artists</h5>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>Artist ID</th>
+            <th>Artist name</th>
+            <th>Label ID</th>
+            <th>Modify row</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(row=> { %>
+            <tr id="<%=row.artistID%>">
+              <td>
+                <%=row.artistID%>
+              </td>
+              <td>
+                <%=row.artistName%>
+              </td>
+              <td>
+                <%=row.labelID%>
+              </td>
+              <td>
+                <button class="button is-small is-primary editButton table-button">
+                  <span class="icon is-small">
+                    <i class="fas fa-pen" style="color: #d3fff8;"></i>
+                  </span>
+                  <span>Edit</span>
+                </button>
+                <button class="button is-small is-danger is-light deleteButton table-button">
+                  <span>Delete</span>
+                  <span class="icon is-small">
+                    <i class="far fa-trash-alt" style="color: #ca445f;"></i>
+                  </span>
+                </button>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-<!-- Artist Table Data -->
-<div class="container">
-  <div class="box">
-    <h5 class="title is-5">UPDATE / DELETE artists</h5>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <th>Artist ID</th>
-          <th>Artist name</th>
-          <th>Label ID</th>
-          <th>Modify row</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% data.forEach(row=> { %>
-        <tr id="<%=row.artistID%>">
-          <td>
-            <%=row.artistID%>
-          </td>
-          <td>
-            <%=row.artistName%>
-          </td>
-          <td>
-            <%=row.labelID%>
-          </td>
-          <td>
-            <button class="button is-small is-primary editButton table-button">
-              <span class="icon is-small">
-                <i class="fas fa-pen" style="color: #d3fff8;"></i>
-              </span>
-              <span>Edit</span>
-            </button>
-            <button
-              class="button is-small is-danger is-light deleteButton table-button"
-            >
-              <span>Delete</span>
-              <span class="icon is-small">
-                <i class="far fa-trash-alt" style="color: #ca445f;"></i>
-              </span>
-            </button>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-</div>
