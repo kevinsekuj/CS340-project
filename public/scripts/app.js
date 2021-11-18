@@ -36,14 +36,11 @@ const addEditButtonListener = (editButton) => {
     );
     rowRestoreValues.push(oldButtonCell);
 
-    // Grab all columns from row except first and last
-    // Create new: <td> -> <input type="text">
+    // Convert table row cells into editable inputs
 
-    // for (let i = 1; i < row.children.length - 1; i++) {
-    // Build the text input and its properties
+    // Build the text input for Artist Name
     const artistEditableInput = document.createElement("input");
     artistEditableInput.type = "text";
-    // input.autofocus = i === 1 ? true : false;
     artistEditableInput.value = `${rowRestoreValues[1].trim()}`;
     artistEditableInput.onmouseover =
       "this.setSelectionRange(this.value.length,this.value.length);";
@@ -59,6 +56,7 @@ const addEditButtonListener = (editButton) => {
     // Replace row <td> with this newly built <td>
     row.replaceChild(newEditableColumn, row.children[1]);
 
+    // Build the dropdown options for Label ID
     const currentLabels = Object.values(
       document.getElementById("labelsDropdown").getElementsByTagName("option")
     );
@@ -70,7 +68,7 @@ const addEditButtonListener = (editButton) => {
       option.text = currentLabels[i].text;
       labelIdDropdown.appendChild(option);
     }
-    labelIdDropdown.value = rowRestoreValues[2].trim();
+    labelIdDropdown.value = rowRestoreValues[2] ? rowRestoreValues[2] : "null";
 
     newEditableColumn = document.createElement("td");
     let selectDiv = document.createElement("div");
@@ -112,7 +110,10 @@ const addEditButtonListener = (editButton) => {
         .filter((child) => child.firstChild.nodeName === "INPUT")
         .map((td) => td.firstChild.value);
 
-      values.push(rowCells[2].firstElementChild.firstElementChild.value);
+      let selectElemValue =
+        rowCells[2].firstElementChild.firstElementChild.value;
+      selectElemValue = selectElemValue === "null" ? "" : selectElemValue;
+      values.push(selectElemValue);
 
       values.forEach((value, i) => {
         rowCells[i + 1].innerHTML = `<td>${value}</td>`;
