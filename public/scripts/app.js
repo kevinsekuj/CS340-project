@@ -112,6 +112,8 @@ const addEditButtonListener = (editButton) => {
         .filter((child) => child.firstChild.nodeName === "INPUT")
         .map((td) => td.firstChild.value);
 
+      values.push(rowCells[2].firstElementChild.firstElementChild.value);
+
       values.forEach((value, i) => {
         rowCells[i + 1].innerHTML = `<td>${value}</td>`;
       });
@@ -140,6 +142,7 @@ const addEditButtonListener = (editButton) => {
         for (let i = 0; i < row.children.length; i++) {
           row.children[i].innerHTML = rowRestoreValues[i];
         }
+
         const buttonCell = row.children[row.children.length - 1];
         const editButton = buttonCell.firstElementChild;
         const deleteButton = editButton.nextElementSibling;
