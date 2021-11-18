@@ -1,15 +1,14 @@
-// const e = require("express");
-const allEditButtons = document.querySelectorAll(".editButton");
-const allDeleteButtons = document.querySelectorAll(".deleteButton");
+const allEditButtons = document.querySelectorAll('.editButton');
+const allDeleteButtons = document.querySelectorAll('.deleteButton');
 let rowRestoreValues = [];
 let editInProgress = false;
 
 /*-----------------------------------------------------------------------------
     Generic function to trim whitespace from string (from Stack Overflow)
 -----------------------------------------------------------------------------*/
-if (typeof String.prototype.trim === "undefined") {
+if (typeof String.prototype.trim === 'undefined') {
   String.prototype.trim = function () {
-    return String(this).replace(/^\s+|\s+$/g, "");
+    return String(this).replace(/^\s+|\s+$/g, '');
   };
 }
 
@@ -17,10 +16,10 @@ if (typeof String.prototype.trim === "undefined") {
     Artist Page: EDIT Button Listeners
 -----------------------------------------------------------------------------*/
 const addEditButtonListener = (editButton) => {
-  editButton.addEventListener("click", () => {
+  editButton.addEventListener('click', () => {
     if (editInProgress) {
       alert(
-        "Save or cancel modifications to your row before modifying another row."
+        'Save or cancel modifications to your row before modifying another row.'
       );
       return;
     }
@@ -32,7 +31,7 @@ const addEditButtonListener = (editButton) => {
     // grab td column holding edit & delete | row | rowId | artist name column
     const oldButtonCell = editButton.parentElement;
     const row = editButton.parentElement.parentElement;
-    const rowId = row.getAttribute("id");
+    const rowId = row.getAttribute('id');
 
     // Save pre-edited values in case user cancels modifications
     // e.g. array will save [ "Crystal Castles", "2"] for artist & label ID
@@ -44,18 +43,18 @@ const addEditButtonListener = (editButton) => {
     // Convert table row cells into editable inputs
 
     // 1) Build the text input for Artist Name
-    const artistEditableInput = document.createElement("input");
-    artistEditableInput.type = "text";
+    const artistEditableInput = document.createElement('input');
+    artistEditableInput.type = 'text';
     artistEditableInput.value = `${rowRestoreValues[1].trim()}`;
     artistEditableInput.onmouseover =
-      "this.setSelectionRange(this.value.length,this.value.length);";
+      'this.setSelectionRange(this.value.length,this.value.length);';
     artistEditableInput.onfocus =
-      "this.setSelectionRange(this.value.length,this.value.length);";
-    artistEditableInput.classList.add("input", "is-small", "is-primary");
-    artistEditableInput.style.width = "50%";
+      'this.setSelectionRange(this.value.length,this.value.length);';
+    artistEditableInput.classList.add('input', 'is-small', 'is-primary');
+    artistEditableInput.style.width = '50%';
 
     // Build the parent <td>
-    let newEditableColumn = document.createElement("td");
+    let newEditableColumn = document.createElement('td');
     newEditableColumn.appendChild(artistEditableInput);
 
     // Replace row <td> with this newly built <td>
@@ -63,21 +62,21 @@ const addEditButtonListener = (editButton) => {
 
     // 2) Build the dropdown options for Label ID
     const currentLabels = Object.values(
-      document.getElementById("labelsDropdown").getElementsByTagName("option")
+      document.getElementById('labelsDropdown').getElementsByTagName('option')
     );
-    const labelIdDropdown = document.createElement("select");
-    labelIdDropdown.classList.add("select");
+    const labelIdDropdown = document.createElement('select');
+    labelIdDropdown.classList.add('select');
     for (let i = 0; i < currentLabels.length; i++) {
-      let option = document.createElement("option");
+      let option = document.createElement('option');
       option.value = currentLabels[i].value;
       option.text = currentLabels[i].text;
       labelIdDropdown.appendChild(option);
     }
-    labelIdDropdown.value = rowRestoreValues[2] ? rowRestoreValues[2] : "null";
+    labelIdDropdown.value = rowRestoreValues[2] ? rowRestoreValues[2] : 'null';
 
-    newEditableColumn = document.createElement("td");
-    let selectDiv = document.createElement("div");
-    selectDiv.classList.add("control", "select", "is-primary", "is-small");
+    newEditableColumn = document.createElement('td');
+    let selectDiv = document.createElement('div');
+    selectDiv.classList.add('control', 'select', 'is-primary', 'is-small');
     selectDiv.appendChild(labelIdDropdown);
     newEditableColumn.appendChild(selectDiv);
     row.replaceChild(newEditableColumn, row.children[2]);
@@ -85,7 +84,7 @@ const addEditButtonListener = (editButton) => {
     row.children[1].firstElementChild.focus();
 
     // 3) update button column buttons: edit/delete -> save/cancel
-    newButtonCell = document.createElement("td");
+    newButtonCell = document.createElement('td');
     newButtonCell.innerHTML = `
     <button 
       class="button is-small is-primary" id="saveBtn${rowId}">
@@ -106,17 +105,17 @@ const addEditButtonListener = (editButton) => {
     row.replaceChild(newButtonCell, oldButtonCell);
 
     // SAVE button listener
-    document.getElementById(`saveBtn${rowId}`).addEventListener("click", () => {
+    document.getElementById(`saveBtn${rowId}`).addEventListener('click', () => {
       const rowCells = Object.values(row.children);
 
       // get user input values
       const values = rowCells
-        .filter((child) => child.firstChild.nodeName === "INPUT")
+        .filter((child) => child.firstChild.nodeName === 'INPUT')
         .map((td) => td.firstChild.value);
 
       let selectElemValue =
         rowCells[2].firstElementChild.firstElementChild.value;
-      selectElemValue = selectElemValue === "null" ? "" : selectElemValue;
+      selectElemValue = selectElemValue === 'null' ? '' : selectElemValue;
       values.push(selectElemValue);
 
       values.forEach((value, i) => {
@@ -137,10 +136,10 @@ const addEditButtonListener = (editButton) => {
       addDeleteButtonListener(deleteButton);
 
       const editRequest = async (data) => {
-        await fetch("/artist"),
+        await fetch('/artist'),
           {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           };
       };
@@ -149,7 +148,7 @@ const addEditButtonListener = (editButton) => {
         artistName: values[0],
         labelId: values[1],
       };
-      console.log("data passed to edit request", artist);
+      console.log('data passed to edit request', artist);
       editRequest(artist);
 
       rowRestoreValues.length = 0;
@@ -159,7 +158,7 @@ const addEditButtonListener = (editButton) => {
     // CANCEL button listener
     document
       .getElementById(`cancelBtn${rowId}`)
-      .addEventListener("click", () => {
+      .addEventListener('click', () => {
         for (let i = 0; i < row.children.length; i++) {
           row.children[i].innerHTML = rowRestoreValues[i];
         }
@@ -186,21 +185,21 @@ const addEditButtonListener = (editButton) => {
     Artist page: DELETE Button Listener
 -----------------------------------------------------------------------------*/
 const addDeleteButtonListener = (deleteButtonElement) => {
-  deleteButtonElement.addEventListener("click", (e) => {
+  deleteButtonElement.addEventListener('click', (e) => {
     if (editInProgress) {
       alert(
-        "Save or cancel modifications to your row before modifying another row."
+        'Save or cancel modifications to your row before modifying another row.'
       );
       return;
     }
     const row = deleteButtonElement.parentElement.parentElement;
-    const id = row.getAttribute("id");
+    const id = row.getAttribute('id');
     row.parentElement.removeChild(row);
 
     const deleteRequest = async (id) => {
-      await fetch("/artist", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+      await fetch('/artist', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: id }),
       });
     };
@@ -223,22 +222,22 @@ allDeleteButtons.forEach((button) => addDeleteButtonListener(button));
 /*-----------------------------------------------------------------------------
     Functionality for navbar burger resizing
 -----------------------------------------------------------------------------*/
-const navbarBurger = document.querySelectorAll(".navbar-burger");
+const navbarBurger = document.querySelectorAll('.navbar-burger');
 navbarBurger.forEach((el) => {
-  el.addEventListener("click", () => {
+  el.addEventListener('click', () => {
     const target = el.dataset.target;
     const targ = document.getElementById(target);
 
-    el.classList.toggle("is-active");
-    targ.classList.toggle("is-active");
+    el.classList.toggle('is-active');
+    targ.classList.toggle('is-active');
   });
 });
 
 /*-----------------------------------------------------------------------------
     Functionality for search results popup
 -----------------------------------------------------------------------------*/
-const searchBtn = document.getElementById("searchForm");
-searchBtn.addEventListener("submit", (e) => {
+const searchBtn = document.getElementById('searchForm');
+searchBtn.addEventListener('submit', (e) => {
   // popUpWindow function will center the popup in the parent window
   const popupWindow = (url, windowName, win, w, h) => {
     const y = win.top.outerHeight / 2 + win.top.screenY - h / 2;
@@ -251,8 +250,8 @@ searchBtn.addEventListener("submit", (e) => {
       width=${w}, height=${h}, top=${y}, left=${x}`
     );
   };
-  const searchParam = document.getElementById("searchQueryInput").value;
-  const url = "/search?searchQuery=" + searchParam;
-  popupWindow(url, "popup", window, 800, 500);
+  const searchParam = document.getElementById('searchQueryInput').value;
+  const url = '/artist/search?searchQuery=' + searchParam;
+  popupWindow(url, 'popup', window, 800, 500);
   e.preventDefault();
 });
