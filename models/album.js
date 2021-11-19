@@ -1,4 +1,4 @@
-const connection = require('../utils/dbcon');
+const connection = require("../utils/dbcon");
 
 const Album = {
   readAll: async () => {
@@ -12,19 +12,19 @@ const Album = {
     return rows;
   },
 
-  create: async(data) => {
+  create: async (data) => {
     const con = await connection();
-    const { albumName, releaseDate, artistId }
+    const { albumName, releaseDate, artistId } = data;
     let query;
-    
-    if (artistId === 'null') {
+
+    if (artistId === "null") {
       query = `
         INSERT INTO ALBUMS (albumName, releaseDate)
         VALUES ('${albumName}', '${releaseDate}');`;
     } else {
       query = `
         INSERT INTO ALBUMS (albumName, releaseDate, artistId)
-        VALUES ('${albumName}', '${releaseDate}', '${artistId}')`
+        VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
     }
 
     const [rows] = await con.execute(query);
@@ -33,7 +33,7 @@ const Album = {
 
     const { insertId } = rows;
     return insertId;
-  }
+  },
 };
 
 module.exports = Album;

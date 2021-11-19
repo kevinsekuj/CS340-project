@@ -1,81 +1,88 @@
 <% layout('/partials/table') %>
 
-  <section class="hero is-dark mb-5">
-    <div class="hero-body">
-      <p class="title" style="color: whitesmoke;">
-        Albums
-      </p>
-      <p class="subtitle mt-1" style="color: whitesmoke;">
-        View or Insert a new Album. Albums must have at least one Artist, and many
-        songs in their collection.
-      </p>
+<section class="hero is-dark mb-5">
+  <div class="hero-body">
+    <p class="title" style="color: whitesmoke;">
+      Albums
+    </p>
+    <p class="subtitle mt-1" style="color: whitesmoke;">
+      View or Insert a new Album. Albums must have at least one Artist, and many
+      songs in their collection.
+    </p>
+  </div>
+</section>
+
+<div class="container mb-5" id="form-container">
+  <div class="box">
+    <h5 class="title is-5">INSERT new album</h5>
+
+    <div class="field">
+      <label class="label">* Album Name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="" />
+      </div>
     </div>
-  </section>
 
-  <div class="container mb-5" id="form-container">
-    <div class="box">
-      <h5 class="title is-5">INSERT new album</h5>
-
-      <div class="field">
-        <label class="label">* Album Name</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
-        </div>
+    <div class="field">
+      <label class="label">Release date</label>
+      <div class="control">
+        <input class="input" type="date" placeholder="" />
       </div>
+    </div>
 
-      <div class="field">
-        <label class="label">Release date</label>
-        <div class="control">
-          <input class="input" type="date" placeholder="" />
-        </div>
+    <div class="field is-small">
+      <label for="artistSelect" class="label">* Artist ID</label>
+      <div class="control select">
+        <select name="artistSelect" id="artistsDropdown">
+          <option value="null">--Choose Artist--</option>
+          <% data.artists.forEach(artist=> { %>
+          <option value="<%= artist.artistID %>">
+            [<%= artist.artistID %>] <%= artist.artistName %>
+          </option>
+          <% }) %>
+        </select>
       </div>
+    </div>
 
-      <div class="field">
-        <label class="label">* Artist ID</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="" />
-        </div>
-      </div>
-
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-small is-link">
-            <strong>Submit</strong>
-          </button>
-        </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-small is-link">
+          <strong>Submit</strong>
+        </button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <div class="box">
-      <table class="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>Album ID</th>
-            <th>Album name</th>
-            <th>Release date</th>
-            <th>Artist ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% data.forEach(row=> { %>
-            <tr id="<%=row.albumID%>">
-              <td>
-                <%=row.albumID%>
-              </td>
-              <td>
-                <%=row.albumName%>
-              </td>
-              <td>
-                <%=row.releaseDate%>
-              </td>
-              <td>
-                <%=row.artistID%>
-              </td>
-            </tr>
-            <% }) %>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <div class="box">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Album ID</th>
+          <th>Album name</th>
+          <th>Release date</th>
+          <th>Artist ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(row=> { %>
+        <tr id="<%=row.albumID%>">
+          <td>
+            <%=row.albumID%>
+          </td>
+          <td>
+            <%=row.albumName%>
+          </td>
+          <td>
+            <%=row.releaseDate%>
+          </td>
+          <td>
+            <%=row.artistID%>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </div>
+</div>

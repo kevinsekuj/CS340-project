@@ -19,6 +19,7 @@ module.exports.create = async (req, res) => {
   res.redirect("artist");
 };
 
+// Still in process - last checked could not get controller to trigger from FE
 module.exports.update = async (req, res) => {
   const { artistId, artistName, labelId } = req.body;
   console.log("data passed to controller", artistId, artistName, labelId);
