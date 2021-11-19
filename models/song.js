@@ -16,7 +16,6 @@ const Song = {
     const con = await connection();
     const { songName, songLength, albumId } = data;
 
-    console.log("song model, data received:", data);
     let query;
 
     if (albumId === "null" && !songLength) {
@@ -38,7 +37,6 @@ const Song = {
     }
 
     const [rows] = await con.execute(query);
-    console.log(rows);
     await con.end();
 
     const { insertId } = rows;
