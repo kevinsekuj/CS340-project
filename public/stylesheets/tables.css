@@ -7,7 +7,7 @@ body {
 
 body {
   background-color: rgb(211, 211, 211);
-  font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif !important;
+  font-family: "Roboto", "Arial Narrow", Arial, sans-serif !important;
 }
 
 #form-container {
@@ -34,4 +34,8 @@ table {
 
 .table-button {
   width: 6rem;
+}
+
+.warning {
+  color: #ffd970;
 }
