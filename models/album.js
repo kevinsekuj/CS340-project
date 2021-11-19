@@ -24,8 +24,8 @@ const Album = {
     }
 
     let query = `
-    INSERT INTO ALBUMS (albumName, releaseDate, artistId)
-    VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
+      INSERT INTO ALBUMS (albumName, releaseDate, artistID)
+      VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
 
     const [rows] = await con.execute(query);
     console.log(rows);
