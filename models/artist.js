@@ -1,8 +1,19 @@
-const Joi = require("joi");
-const connection = require("../utils/dbcon");
+const Joi = require('joi');
+const connection = require('../utils/dbcon');
 
 const Artist = {
   validateArtist: () => {},
+
+  find: async (userSearch) => {
+    const con = await connection();
+
+    const query = `SELECT * FROM artists WHERE artistName LIKE '%${userSearch}%';`;
+    const [rows] = await con.execute(query);
+
+    await con.end();
+
+    return rows;
+  },
 
   readAll: async () => {
     const con = await connection();
@@ -20,7 +31,7 @@ const Artist = {
     const { artistName, labelId } = data;
     let query;
 
-    if (labelId === "null") {
+    if (labelId === 'null') {
       query = `INSERT INTO ARTISTS (artistName) VALUES ('${artistName}');`;
     } else {
       query = `
@@ -39,7 +50,7 @@ const Artist = {
   update: async (data) => {
     const con = await connection();
     const { artistId, artistName, labelId } = data;
-    console.log("data passed to model", data);
+    console.log('data passed to model', data);
 
     const query = `
     UPDATE ARTISTS

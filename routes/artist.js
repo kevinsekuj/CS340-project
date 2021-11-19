@@ -9,4 +9,6 @@ router
   .put(artist.update)
   .delete(artist.delete);
 
+router.route('/search').get(artist.search);
+
 module.exports = router;

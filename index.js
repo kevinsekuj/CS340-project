@@ -37,14 +37,13 @@ const artist = require('./routes/artist');
 const song = require('./routes/song');
 const label = require('./routes/label');
 const songArtist = require('./routes/songArtist');
-const search = require('./routes/search');
 
 app.use('/album', album);
 app.use('/artist', artist);
 app.use('/song', song);
 app.use('/label', label);
 app.use('/songartist', songArtist);
-app.use('/search', search);
+
 //
 
 app.listen(port, (req, res) => {
