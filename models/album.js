@@ -17,6 +17,8 @@ const Album = {
     const { albumName, releaseDate, artistId } = data;
     let query;
 
+    console.log(albumName, releaseDate, artistId);
+
     if (artistId === "null") {
       query = `
         INSERT INTO ALBUMS (albumName, releaseDate)
