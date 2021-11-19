@@ -1,33 +1,34 @@
 <% layout('/partials/table') %>
 
-  <section class="hero is-dark mb-5">
-    <div class="hero-body">
-      <p class="title" style="color: whitesmoke;">
-        Labels
-      </p>
-      <p class="subtitle mt-1" style="color: whitesmoke;">
-        View or insert Record Labels. A Record Label has a partial 1:M
-        relationship with an Artist. This represents whether an Artist is signed
-        to a particular Record Label or not.
-      </p>
-    </div>
-  </section>
+<section class="hero is-dark mb-5">
+  <div class="hero-body">
+    <p class="title" style="color: whitesmoke;">
+      Labels
+    </p>
+    <p class="subtitle mt-1" style="color: whitesmoke;">
+      View or insert Record Labels. A Record Label has a partial 1:M
+      relationship with an Artist. This represents whether an Artist is signed
+      to a particular Record Label or not.
+    </p>
+  </div>
+</section>
 
-  <div class="container mb-5" id="form-container">
-    <div class="box">
+<div class="container mb-5" id="form-container">
+  <div class="box">
+    <form id="addForm" method="POST" action="/label">
       <h5 class="title is-5">INSERT new label</h5>
 
       <div class="field">
-        <label class="label">Label name</label>
+        <label class="label">Label Name</label>
         <div class="control">
-          <input class="input" type="text" placeholder="" />
+          <input class="input" name="labelName" type="text" required />
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Date founded</label>
+        <label class="label">Date Founded</label>
         <div class="control">
-          <input class="input" type="date" placeholder="" />
+          <input class="input" name="dateFounded" type="date" />
         </div>
       </div>
 
@@ -38,34 +39,35 @@
           </button>
         </div>
       </div>
-    </div>
+    </form>
   </div>
+</div>
 
-  <div class="container">
-    <div class="box">
-      <table class="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>Label ID</th>
-            <th>Label name</th>
-            <th>Date Founded</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% data.forEach(row=> { %>
-            <tr id="<%=row.labelID%>">
-              <td>
-                <%=row.labelID%>
-              </td>
-              <td>
-                <%=row.labelName%>
-              </td>
-              <td>
-                <%=row.dateFounded%>
-              </td>
-            </tr>
-            <% }) %>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <div class="box">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>Label ID</th>
+          <th>Label name</th>
+          <th>Date Founded</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(row=> { %>
+        <tr id="<%=row.labelID%>">
+          <td>
+            <%=row.labelID%>
+          </td>
+          <td>
+            <%=row.labelName%>
+          </td>
+          <td>
+            <%=row.dateFounded%>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </div>
+</div>
