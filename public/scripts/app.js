@@ -259,3 +259,18 @@ searchBtn.addEventListener("submit", (e) => {
 /*=============================================================================
                   ALBUM PAGE -- needs to move to its own file
 =============================================================================*/
+const validateAlbum = () => {
+  console.log("here");
+  const select = document.getElementById("artistsDropdown");
+  const albumNameInput = document.getElementById("albumNameInput");
+  if (!albumNameInput.value) {
+    albumNameInput.classList.add("is-danger");
+    alert("Album Name required.");
+    return false;
+  }
+  if (select.value === "null") {
+    select.classList.add("is-danger");
+    alert("Artist required -- please select an artist.");
+    return false;
+  }
+};

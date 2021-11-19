@@ -20,20 +20,26 @@
       <div class="field">
         <label class="label">* Album Name</label>
         <div class="control">
-          <input class="input" type="text" name="albumName" placeholder="" />
+          <input
+            class="input"
+            id="albumNameInput"
+            type="text"
+            name="albumName"
+            required
+          />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Release date</label>
         <div class="control">
-          <input class="input" type="date" name="releaseDate" placeholder="" />
+          <input class="input" type="date" name="releaseDate" />
         </div>
       </div>
 
       <div class="field is-small">
         <label for="artistSelect" class="label">* Artist ID</label>
-        <div class="control select">
+        <div class="control select" required>
           <select name="artistSelect" id="artistsDropdown">
             <option value="null">--Choose Artist--</option>
             <% data.artists.forEach(artist=> { %>
@@ -47,7 +53,7 @@
 
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-small is-link">
+          <button class="button is-small is-link" onclick="validateAlbum()">
             <strong>Submit</strong>
           </button>
         </div>
