@@ -1,4 +1,4 @@
-const connection = require('../utils/dbcon');
+const connection = require("../utils/dbcon");
 
 const Label = {
   readAll: async () => {
@@ -10,6 +10,22 @@ const Label = {
     await con.end();
 
     return rows;
+  },
+
+  create: async (data) => {
+    const con = await connection();
+    const { labelName, dateFounded } = data;
+    console.log("models, raw data received", data);
+
+    const query = `INSERT INTO LABELS (labelName, dateFounded)
+    VALUES ('${labelName}', '${dateFounded}')`;
+
+    const [rows] = await con.execute(query);
+    console.log("models, rows return after query executed", rows);
+    await con.end();
+
+    const { insertId } = rows;
+    return insertId;
   },
 };
 

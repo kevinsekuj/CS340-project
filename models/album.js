@@ -15,19 +15,17 @@ const Album = {
   create: async (data) => {
     const con = await connection();
     const { albumName, releaseDate, artistId } = data;
-    let query;
 
     console.log(albumName, releaseDate, artistId);
 
     if (artistId === "null") {
-      query = `
-        INSERT INTO ALBUMS (albumName, releaseDate)
-        VALUES ('${albumName}', '${releaseDate}');`;
-    } else {
-      query = `
-        INSERT INTO ALBUMS (albumName, releaseDate, artistId)
-        VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
+      console.log("cannot insert album without artist");
+      return;
     }
+
+    let query = `
+    INSERT INTO ALBUMS (albumName, releaseDate, artistId)
+    VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
 
     const [rows] = await con.execute(query);
     console.log(rows);
