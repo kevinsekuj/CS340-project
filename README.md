@@ -7,7 +7,7 @@ between musicians, songs, albums, and labels.
 
 - [Node.js](https://nodejs.org/en/) 
 - [Express.js](https://expressjs.com/) 
-- [MySQL](https://www.mysql.com//)
+- [MySQL](https://www.mysql.com/)
 - [ejs](https://ejs.co/)
 - [Bulma](https://bulma.io/)
 - JavaScript
