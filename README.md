@@ -5,12 +5,12 @@ between musicians, songs, albums, and labels.
 
 ## Technologies
 
-- Node.js
-- Express
+- [Node.js](https://nodejs.org/en/) 
+- [Express.js](https://expressjs.com/) 
+- [MySQL](https://www.mysql.com//)
+- [ejs](https://ejs.co/)
+- [Bulma](https://bulma.io/)
 - JavaScript
-- MySQL
-- ejs
-- CSS
 - HTML5
 
 ## Development
