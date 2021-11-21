@@ -50,15 +50,26 @@ const Artist = {
     const con = await connection();
     const { artistId, artistName, labelId } = data;
     console.log("data passed to model", data);
+    let query;
 
-    const query = `
-    UPDATE ARTISTS
-    SET artistName = ${artistName}, labelId = ${labelId}
-    WHERE artistId = ${artistId}
-    `;
+    if (labelId === 'null') {
+      query = `
+        UPDATE ARTISTS
+        SET artistName = '${artistName}', labelId = NULL
+        WHERE artistId = ${artistId};`;
+    } else {
+      query = `
+        UPDATE ARTISTS
+        SET artistName = '${artistName}', labelId = ${labelId}
+        WHERE artistId = ${artistId};`;
+    }
 
-    await con.execute(query);
+    const [rows] = await con.execute(query);
+    console.log(rows)
     await con.end();
+
+    const { insertId } = rows;
+    return insertId
   },
 
   delete: async (id) => {

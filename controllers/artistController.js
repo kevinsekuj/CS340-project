@@ -23,12 +23,14 @@ module.exports.search = async (req, res) => {
 module.exports.create = async (req, res) => {
   const { artistName, labelSelect } = req.body;
 
-  await Artist.create({
+  const insertId = await Artist.create({
     artistName: artistName,
     labelId: labelSelect,
   });
 
-  res.redirect('artist');
+  if (insertId) {
+    res.redirect('artist');
+  }
 };
 
 // Still in process - last checked could not get controller to trigger from FE
