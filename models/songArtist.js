@@ -19,7 +19,6 @@ const SongArtist = {
 
   create: async (data) => {
     const con = await connection();
-
     const { songId, artistId } = data;
 
     const query = `

@@ -11,11 +11,11 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-  const { songDropdown, artistDropdown } = req.body;
+  const { songSelect, artistSelect } = req.body;
 
   await SongArtist.create({
-    songId: songDropdown,
-    artistId: artistDropdown,
+    songId: songSelect,
+    artistId: artistSelect,
   });
 
   res.redirect("/songArtist");
