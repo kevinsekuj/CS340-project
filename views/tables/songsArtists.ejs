@@ -21,36 +21,52 @@
 
 <div class="container mb-5" id="form-container">
   <div class="box">
-    <h5 class="title is-5">
-      INSERT new song & artist relationship
-      <span class="warning">
-        <em>
-          (in progress)
-        </em>
-      </span>
-    </h5>
+    <form method="POST" action="/songArtist">
+      <h5 class="title is-5">
+        INSERT new song & artist relationship
+        <span class="warning">
+          <em>
+            (in progress)
+          </em>
+        </span>
+      </h5>
 
-    <div class="field">
-      <label class="label">* Song ID</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="" />
+      <div class="field is-small">
+        <label for="songSelect" class="label">* Song ID</label>
+        <div class="control select">
+          <select name="songSelect" id="songDropdown">
+            <option value="null">--Song Required--</option>
+            <% data.songs.forEach(song => { %>
+            <option value="<%= song.songID %>">
+              [<%= song.songID %>] <%= song.songName %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">* Artist ID</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="" />
+      <div class="field is-small">
+        <label for="artistSelect" class="label">* Artist ID</label>
+        <div class="control select">
+          <select name="artistSelect" id="artistDropdown">
+            <option value="null">--Artist Required--</option>
+            <% data.artists.forEach(artist => { %>
+            <option value="<%= artist.artistID %>">
+              [<%= artist.artistId %>] <%= artist.artistName %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-small is-warning is-loading">
-          <strong>Submit</strong>
-        </button>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-small is-warning is-loading">
+            <strong>Submit</strong>
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
