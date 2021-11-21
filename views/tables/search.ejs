@@ -1,49 +1,49 @@
 <% layout('/partials/table') %>
 
-<section class="hero is-dark mb-5">
-  <div class="hero-body">
-    <p class="title" style="color: whitesmoke;">
-      Search Results
-    </p>
-    <!-- The EJS in this paragraph is to display "result" instead of 
+  <section class="hero is-dark mb-5">
+    <div class="hero-body">
+      <p class="title" style="color: whitesmoke;">
+        Search Results
+      </p>
+      <!-- The EJS in this paragraph is to display "result" instead of 
     "results" if there is only one match. -->
-    <p class="subtitle mt-1" style="color: whitesmoke;">
-      <%= data.results.length %> <% if(data.results.length === 1) { %> result <%
-      } else { %> results <% } %> found for "<%=data.query %>"
-    </p>
-  </div>
-</section>
+      <p class="subtitle mt-1" style="color: whitesmoke;">
+        <%= data.results.length %>
+          <% if(data.results.length===1) { %> result <% } else { %> results <% } %> found for "<%=data.query %>"
+      </p>
+    </div>
+  </section>
 
-<!-- Artist Table Data -->
-<div class="container">
-  <div class="box">
-    <% if(data.results.length > 0) { %>
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <th>Artist ID</th>
-          <th>Artist name</th>
-          <th>Label ID</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% data.results.forEach(row=> { %>
-        <tr id="<%=row.artistID%>">
-          <td>
-            <%=row.artistID%>
-          </td>
-          <td>
-            <%=row.artistName%>
-          </td>
-          <td>
-            <%=row.labelID%>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-    <% } else { %>
-    <p>No search results found.</p>
-    <% } %>
+  <!-- Artist Table Data -->
+  <div class="container">
+    <div class="box">
+      <% if(data.results.length> 0) { %>
+        <table class="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>Artist ID</th>
+              <th>Artist name</th>
+              <th>Label ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.results.forEach(row=> { %>
+              <tr id="<%=row.artistID%>">
+                <td>
+                  <%=row.artistID%>
+                </td>
+                <td>
+                  <%=row.artistName%>
+                </td>
+                <td>
+                  <%=row.labelID%>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+        <% } else { %>
+          <p>No search results found.</p>
+          <% } %>
+    </div>
   </div>
-</div>
