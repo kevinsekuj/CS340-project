@@ -31,7 +31,6 @@ const test = async () => {
 test();
 
 // Router
-// const home = require("./routes/home");
 const album = require('./routes/album');
 const artist = require('./routes/artist');
 const song = require('./routes/song');
