@@ -7,8 +7,7 @@
     </p>
     <p class="subtitle mt-1" style="color: whitesmoke;">
       View, insert, or search for an Artist. An Artist may or may not be signed
-      to a Record Label. An Artist must have at least one song attributed to
-      them.
+      to a Record Label.
     </p>
   </div>
 </section>
@@ -37,7 +36,7 @@
           <label for="labelSelect" class="label">Label</label>
           <div class="control select">
             <select name="labelSelect" id="labelsDropdown">
-              <option value="null">--No Label--</option>
+              <option value="null">--Optional Foreign Key--</option>
               <% data.labels.forEach(label=> { %>
               <option value="<%= label.labelID %>">
                 [<%= label.labelID %>] <%= label.labelName %>
@@ -50,7 +49,7 @@
         <div class="field is-grouped">
           <div class="control">
             <button
-              id="insertButton"
+              id="artistInsertSubmit"
               type="submit"
               class="button is-small is-link"
             >
@@ -64,7 +63,7 @@
 
   <!-- Search Artist Form -->
   <div class="container mb-5 ml-2" id="form-container">
-    <form id="searchForm" method="GET" action="/search">
+    <form id="searchForm" method="GET" action="/artist/search">
       <div class="box">
         <h5 class="title is-5">SEARCH existing artist</h5>
 
@@ -141,3 +140,4 @@
     </table>
   </div>
 </div>
+<script src="scripts/artist.js"></script>

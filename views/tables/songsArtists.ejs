@@ -23,8 +23,8 @@
       <div class="field is-small">
         <label for="songSelect" class="label">* Song ID</label>
         <div class="control select">
-          <select name="songSelect" id="songDropdown">
-            <option value="null">--Required--</option>
+          <select name="songSelect" id="songSelect">
+            <option value="null">--Required Foreign Key--</option>
             <% data.songs.forEach(song => { %>
             <option value="<%= song.songID %>">
               [<%= song.songID %>] <%= song.songName %>
@@ -37,8 +37,8 @@
       <div class="field is-small">
         <label for="artistSelect" class="label">* Artist ID</label>
         <div class="control select">
-          <select name="artistSelect" id="artistDropdown">
-            <option value="null">--Required--</option>
+          <select name="artistSelect" id="artistSelect">
+            <option value="null">--Required Foreign Key--</option>
             <% data.artists.forEach(artist => { %>
             <option value="<%= artist.artistID %>">
               [<%= artist.artistID %>] <%= artist.artistName %>
@@ -50,7 +50,7 @@
 
       <div class="field is-grouped">
         <div class="control">
-          <button class="button is-small is-link">
+          <button class="button is-small is-link" id="songArtistInsertSubmit">
             <strong>Submit</strong>
           </button>
         </div>
@@ -98,3 +98,4 @@
     </table>
   </div>
 </div>
+<script src="scripts/songArtist.js"></script>
