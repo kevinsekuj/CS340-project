@@ -74,7 +74,16 @@ const Artist = {
 
   delete: async (id) => {
     const con = await connection();
-    const query = `DELETE FROM ARTISTS WHERE artistID = ${id}`;
+    let query = `
+      DELETE s FROM songs s
+      JOIN songs_artists sa ON sa.songID = s.songID
+      WHERE sa.artistID = ${id};`
+
+    await con.execute(query);
+
+    query = `
+      DELETE FROM ARTISTS WHERE artistID = ${id};`;
+
     await con.execute(query);
     await con.end();
   },
