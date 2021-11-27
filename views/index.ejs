@@ -1,78 +1,90 @@
 <% layout('/partials/boilerplate') %>
 
-<section class="hero is-fullheight is-link" id="index-hero">
+  <section class="hero is-fullheight is-link" id="index-hero">
     <div class="hero-body">
       <div class="container" id="index-container">
         <div id="logo">musicWiki</div>
         <nav id="level" class="level">
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">Songs</p>
-                <p class="title">20,000</p>
-              </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Songs</p>
+              <p class="title">
+                <%=data.songs%>
+              </p>
             </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">Albums</p>
-                <p class="title">2664</p>
-              </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Albums</p>
+              <p class="title">
+                <%=data.albums%>
+              </p>
             </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">Artists</p>
-                <p class="title">729</p>
-              </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Artists</p>
+              <p class="title">
+                <%=data.artists%>
+              </p>
             </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">Labels</p>
-                <p class="title">86</p>
-              </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Labels</p>
+              <p class="title">
+                <%=data.labels%>
+              </p>
             </div>
-          </nav>
+          </div>
+        </nav>
 
         <div class="columns" id="navigation">
-            <div class="column is-two-fifths">
-                <div class="box"  id="about">
-                  <h3 style="font-size: .9em;">
-                    About
-                  </h3>
-                  <p style="letter-spacing: 1.1px;">
-                    MusicWiki is a database driven music streaming platform for 20,000 users. 
-                  </p>
-                  <p style="letter-spacing: 1.1px;">
-                    The database focuses on creating the proper data relationships to map artist adjacency, namely, finding artists that share some connection by label or song collaboration, or finding songs by albums.
-                  </p>
-                </div>
+          <div class="column is-two-fifths">
+            <div class="box" id="about">
+              <h3 style="font-size: .9em;">
+                About
+              </h3>
+              <p style="letter-spacing: 1.2px; font-size: .55em;">
+                MusicWiki is a database driven music platform.
+              </p>
+              <p style="letter-spacing: 1.2px; font-size: .55em;">
+                Users may create and map data relationships for artists, such as adding artists to a label or finding
+                songs by albums.
+              </p>
             </div>
-            <div class="column is-three-fifths">
-                <div class="box" id="menu">
-                    <aside class="menu">
-                    <p class="menu-label">
-                    General
-                    </p>
-                    <ul class="menu-list">
-                    <span class="icon-text">
-                      <span class="icon">
-                        <i style="margin-bottom: 2px;" class="fab fa-github"></i>
-                      </span>
-                      <span><li><a style="margin: 0 0; padding: 0 0;" href="https://github.com/kevinsekuj/CS340-project">Repository</a></li></span>
+          </div>
+          <div class="column is-three-fifths">
+            <div class="box" id="menu">
+              <aside class="menu">
+                <p class="menu-label">
+                  General
+                </p>
+                <ul class="menu-list">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i style="margin-bottom: 2px;" class="fab fa-github"></i>
                     </span>
-                    </ul>
-                    <p class="menu-label">
-                    View tables
-                    </p>
-                    <ul class="menu-list">
-                    
-                    <li><a href="/artist">View Artists</a></li>
-                    <li><a href="/song">View Songs</a></li>
-                    <li><a href="/album">View Albums</a></li>
-                    <li><a href="/label">View Labels</a></li>
-                    <li><a href="/songartist">View Songs-Artists Relationship</a></li>
-                    </ul>
-                </aside>
-                </div>
+                    <span>
+                      <li><a style="margin: 0 0; padding: 0 0;"
+                          href="https://github.com/kevinsekuj/CS340-project">Repository</a></li>
+                    </span>
+                  </span>
+                </ul>
+                <p class="menu-label">
+                  View tables
+                </p>
+                <ul class="menu-list">
+
+                  <li><a href="/artist">View Artists</a></li>
+                  <li><a href="/song">View Songs</a></li>
+                  <li><a href="/album">View Albums</a></li>
+                  <li><a href="/label">View Labels</a></li>
+                  <li><a href="/songartist">View Songs-Artists Relationship</a></li>
+                </ul>
+              </aside>
             </div>
+          </div>
         </div>
 
       </div>

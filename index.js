@@ -7,8 +7,10 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 const path = require('path');
+
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const connection = require('./utils/dbcon');
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
@@ -20,7 +22,6 @@ app.use(express.json());
 app.use(express.static(path.join((__dirname, 'public'))));
 app.use(methodOverride('_method'));
 
-const connection = require('./utils/dbcon');
 const test = async () => {
   const con = await connection();
   const [rows] = await con.execute('SELECT * FROM `test`');
@@ -31,12 +32,14 @@ const test = async () => {
 test();
 
 // Router
+const home = require('./routes/home');
 const album = require('./routes/album');
 const artist = require('./routes/artist');
 const song = require('./routes/song');
 const label = require('./routes/label');
 const songArtist = require('./routes/songArtist');
 
+app.use('/', home);
 app.use('/album', album);
 app.use('/artist', artist);
 app.use('/song', song);
@@ -47,10 +50,6 @@ app.use('/songartist', songArtist);
 
 app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
-});
-
-app.get('/', (req, res) => {
-  res.render('index');
 });
 
 app.all('*', (req, res, next) => {
