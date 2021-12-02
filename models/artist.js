@@ -1,9 +1,7 @@
 /*
-  The Artist model is triggered by the ArtistController.
+  The Artist model is exported to the ArtistController.
   Artist model is where all database interaction occurs for the Artist table.
-  
 */
-
 
 const connection = require("../utils/dbcon");
 
@@ -26,7 +24,7 @@ const Artist = {
   readAll: async () => {
     const con = await connection();
     const query = `SELECT * from ARTISTS;`;
-    const [rows, fields] = await con.execute(query);
+    const [rows] = await con.execute(query);
 
     await con.end();
     return rows;
@@ -47,9 +45,9 @@ const Artist = {
     }
 
     const [rows] = await con.execute(query);
-    await con.end();
-
     const { insertId } = rows;
+
+    await con.end();
     return insertId;
   },
 
@@ -71,30 +69,37 @@ const Artist = {
         SET artistName = '${artistName}', labelId = ${labelId}
         WHERE artistId = ${artistId};`;
     }
-
     const [rows] = await con.execute(query);
-    await con.end();
-
     const { insertId } = rows;
+
+    await con.end();
     return insertId
   },
 
   // DELETE artist
   delete: async (id) => {
     const con = await connection();
+
+    // Deleting an artist also deletes their songs, since songs require
+    // an artist, and also deletes that artist's albums
     let query = `
       DELETE s FROM songs s
       JOIN songs_artists sa ON sa.songID = s.songID
       WHERE sa.artistID = ${id};
-      `
+      `;
+    await con.execute(query);
 
+    query = `
+      DELETE a FROM albums a
+      WHERE a.artistID = ${id};
+      `;
     await con.execute(query);
 
     query = `
       DELETE FROM ARTISTS WHERE artistID = ${id};
       `;
-
     await con.execute(query);
+
     await con.end();
   },
 };

@@ -1,6 +1,12 @@
+/*
+  The ArtistController passes Artist table data back and forth between database 
+  and client.
+*/
+
 const Artist = require('../models/artist');
 const Label = require('../models/label');
 
+// Index is invoked when user loads the Artists page.
 module.exports.index = async (req, res) => {
   const data = await Artist.readAll();
   data['labels'] = await Label.readAll();
@@ -8,6 +14,7 @@ module.exports.index = async (req, res) => {
   res.render('tables/artists', { data });
 };
 
+// Search is invoked when client submits a search query for artists.
 module.exports.search = async (req, res) => {
   const { searchQuery } = req.query;
   const results = await Artist.find(searchQuery);
@@ -20,6 +27,7 @@ module.exports.search = async (req, res) => {
   res.render('tables/search', { data });
 };
 
+// Create is invoked when client submits a new Artist row to enter.
 module.exports.create = async (req, res) => {
   const { artistName, labelSelect } = req.body;
 
@@ -33,7 +41,7 @@ module.exports.create = async (req, res) => {
   }
 };
 
-// Still in process - last checked could not get controller to trigger from FE
+// Update is invoked when client submits an edit to an existing Artist row.
 module.exports.update = async (req, res) => {
   const { artistId, artistName, labelId } = req.body;
   console.log('data passed to controller', artistId, artistName, labelId);
@@ -47,6 +55,8 @@ module.exports.update = async (req, res) => {
   res.redirect('artist');
 };
 
+// Delete is invoked when an Artist row, its Songs, and its Albums are to be
+// deleted.
 module.exports.delete = async (req, res) => {
   const { id } = req.body;
 

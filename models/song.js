@@ -1,3 +1,8 @@
+/*
+  The Song model is exported to the SongController.
+  Song model is where all database interaction occurs for the Song table.
+*/
+
 const connection = require("../utils/dbcon");
 
 const Song = {
@@ -5,19 +10,18 @@ const Song = {
     const con = await connection();
 
     const query = `SELECT * from SONGS;`;
-    const [rows, fields] = await con.execute(query);
+    const [rows] = await con.execute(query);
 
     await con.end();
-
     return rows;
   },
 
   create: async (data) => {
     const con = await connection();
     const { songName, songLength, albumId } = data;
-
     let query;
 
+    // QUERY varies depending on which optional fields are present
     if (albumId === "null" && !songLength) {
       query = `
         INSERT INTO SONGS (songName)
@@ -35,11 +39,10 @@ const Song = {
         INSERT INTO SONGS (songName, songLength, albumID)
         VALUES ('${songName}', '${songLength}', '${albumId}');`;
     }
-
     const [rows] = await con.execute(query);
-    await con.end();
-
     const { insertId } = rows;
+
+    await con.end();
     return insertId;
   },
 };

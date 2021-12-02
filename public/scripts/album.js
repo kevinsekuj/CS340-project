@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-    Data validation on input fields before INSERT form submit
+    Data validation on input fields before INSERT form submit.
 -----------------------------------------------------------------------------*/
 const addInsertListener = () => {
   document.getElementById("albumSubmitButton").addEventListener(
@@ -21,6 +21,9 @@ const addInsertListener = () => {
   );
 }
 
+/*-----------------------------------------------------------------------------
+    Listener for "Insert New Album" button.
+-----------------------------------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', () => {
   addInsertListener()
 })
