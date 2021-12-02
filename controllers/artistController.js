@@ -44,7 +44,6 @@ module.exports.create = async (req, res) => {
 // Update is invoked when client submits an edit to an existing Artist row.
 module.exports.update = async (req, res) => {
   const { artistId, artistName, labelId } = req.body;
-  console.log('data passed to controller', artistId, artistName, labelId);
 
   await Artist.update({
     artistId: artistId,

@@ -2,6 +2,7 @@ const mysql = require('mysql2/promise');
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
+// Credentials are passed via .env variables, not present here
 const connection = async () => {
   const con = await mysql.createConnection({
     host: process.env.DB_HOST,
