@@ -1,6 +1,3 @@
-----------------------------
--- Use the heroku DB
-----------------------------
 USE heroku_61222def89864f4;
 
 ----------------------------
@@ -54,9 +51,11 @@ CREATE TABLE ALBUMS (
     albumName varchar(50) NOT NULL,
     releaseDate date,
     artistID int,
+    
     PRIMARY KEY (albumID),
     CONSTRAINT FK_ArtistAlbum FOREIGN KEY (artistID)
     REFERENCES ARTISTS(artistID)
+    ON DELETE CASCADE
 );
 
 INSERT INTO ALBUMS (albumName, releaseDate, artistID)
@@ -72,10 +71,11 @@ CREATE TABLE SONGS (
     songID int auto_increment,
     songName varchar(50) NOT NULL,
     songLength int,
-    albumID int,
+    albumID int NULL,
     PRIMARY KEY (songID),
     CONSTRAINT FK_AlbumSong FOREIGN KEY (albumID)
     REFERENCES ALBUMS(albumID)
+    ON DELETE CASCADE
 );
 
 INSERT INTO SONGS (songName, songLength, albumID)

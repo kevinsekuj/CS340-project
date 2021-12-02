@@ -1,32 +1,39 @@
-const Joi = require("joi");
+/*
+  The Artist model is triggered by the ArtistController.
+  Artist model is where all database interaction occurs for the Artist table.
+  
+*/
+
+
 const connection = require("../utils/dbcon");
 
 const Artist = {
   validateArtist: () => {},
 
-  find: async (userSearch) => {
+  // SEARCH an artist
+  find: async (userSearchQuery) => {
     const con = await connection();
-
-    const query = `SELECT * FROM artists WHERE artistName LIKE '${userSearch}%';`;
+    const query = `
+      SELECT * FROM artists WHERE artistName LIKE '${userSearchQuery}%';
+      `;
     const [rows] = await con.execute(query);
 
     await con.end();
-
     return rows;
   },
 
+  // READ ALL artists
   readAll: async () => {
     const con = await connection();
     const query = `SELECT * from ARTISTS;`;
     const [rows, fields] = await con.execute(query);
+
     await con.end();
     return rows;
   },
 
-  readFromId: () => {},
-
+  // CREATE NEW artist
   create: async (data) => {
-    // error handling, empty body etc
     const con = await connection();
     const { artistName, labelId } = data;
     let query;
@@ -46,12 +53,13 @@ const Artist = {
     return insertId;
   },
 
+  // UPDATE existing artist
   update: async (data) => {
     const con = await connection();
     const { artistId, artistName, labelId } = data;
-    console.log("data passed to model", data);
     let query;
 
+    // Different queries to handle empty optional fields
     if (labelId === 'null') {
       query = `
         UPDATE ARTISTS
@@ -65,24 +73,26 @@ const Artist = {
     }
 
     const [rows] = await con.execute(query);
-    console.log(rows)
     await con.end();
 
     const { insertId } = rows;
     return insertId
   },
 
+  // DELETE artist
   delete: async (id) => {
     const con = await connection();
     let query = `
       DELETE s FROM songs s
       JOIN songs_artists sa ON sa.songID = s.songID
-      WHERE sa.artistID = ${id};`
+      WHERE sa.artistID = ${id};
+      `
 
     await con.execute(query);
 
     query = `
-      DELETE FROM ARTISTS WHERE artistID = ${id};`;
+      DELETE FROM ARTISTS WHERE artistID = ${id};
+      `;
 
     await con.execute(query);
     await con.end();

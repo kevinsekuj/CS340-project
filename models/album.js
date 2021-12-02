@@ -28,7 +28,6 @@ const Album = {
       VALUES ('${albumName}', '${releaseDate}', '${artistId}')`;
 
     const [rows] = await con.execute(query);
-    console.log(rows);
     await con.end();
 
     const { insertId } = rows;
